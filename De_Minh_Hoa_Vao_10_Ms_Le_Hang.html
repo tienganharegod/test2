@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ĐỀ MINH HỌA VÀO 10 - Ms Lê Hằng English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #8854C0;
+      --secondary: #FDCB6E;
+      --accent: #00C9A7;
+      --success: #00D26A;
+      --danger: #FF4757;
+      --warning: #FFA502;
+      --bg-card: #FFFFFF;
+      --text-main: #2D3436;
+      --text-muted: #636E72;
+      --border-color: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Nunito', 'Quicksand', sans-serif;
+      min-height: 100vh;
+      color: var(--text-main);
+      background: linear-gradient(135deg, #a8c0ff 0%, #c8d6e5 20%, #fed6e3 45%, #d5fefd 70%, #a8c0ff 100%);
+      background-size: 400% 400%;
+      animation: gradientBG 18s ease infinite;
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: 120px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating cute background elements */
+    .bg-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .floating-item {
+      position: absolute;
+      opacity: 0.35;
+      animation: floatAround 14s infinite ease-in-out alternate;
+    }
+
+    @keyframes floatAround {
+      0% { transform: translateY(0) rotate(0deg) scale(0.9); }
+      50% { transform: translateY(-25px) rotate(15deg) scale(1.05); }
+      100% { transform: translateY(15px) rotate(-15deg) scale(0.95); }
+    }
+
+    /* Bottom Metro Road & Animated Train */
+    .bottom-railway {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 44px;
+      background: #2C3E50;
+      border-top: 5px solid #27AE60;
+      z-index: 9;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.15);
+    }
+
+    .railway-lines {
+      width: 200%;
+      height: 6px;
+      background: repeating-linear-gradient(90deg, #FFFFFF, #FFFFFF 30px, transparent 30px, transparent 60px);
+      animation: moveRoad 3s linear infinite;
+    }
+
+    @keyframes moveRoad {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .animated-train {
+      position: fixed;
+      bottom: 10px;
+      left: -150px;
+      font-size: 28px;
+      z-index: 10;
+      animation: driveTrain 18s linear infinite;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    }
+
+    @keyframes driveTrain {
+      0% { left: -120px; }
+      100% { left: 105vw; }
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 14px 16px 50px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Sticky Progress Bar */
+    .top-progress-bar {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      padding: 10px 18px;
+      border-radius: 50px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      border: 2px solid #FFF;
+    }
+
+    .score-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-weight: 800;
+      font-size: 15px;
+      color: #FFF;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      white-space: nowrap;
+    }
+
+    .badge-star {
+      background: linear-gradient(135deg, #FF6B8B, #FF8E53);
+    }
+
+    .badge-check {
+      background: linear-gradient(135deg, #00D26A, #00B894);
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 16px;
+      background: #E2E8F0;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      border: 2px solid #FFF;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #FDCB6E, #00C9A7, #00D26A);
+      border-radius: 20px;
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Ms Lê Hằng Warning Notice Banner */
+    .warning-banner {
+      background: linear-gradient(135deg, #FFF0F2 0%, #FFF5EB 100%);
+      border: 2px solid #FF7675;
+      border-left: 8px solid #FF4757;
+      border-radius: 18px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 16px rgba(255, 71, 87, 0.12);
+    }
+
+    .warning-title {
+      color: #D63031;
+      font-weight: 900;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .warning-text {
+      color: #4A4A4A;
+      font-size: 14.5px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .warning-highlight {
+      color: #C0392B;
+      font-weight: 800;
+    }
+
+    /* Hero Banner */
+    .hero-card {
+      background: #FFFFFF;
+      border-radius: 26px;
+      padding: 22px 26px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.07);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #F0F3F8;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #0984E3, #00CEC9);
+      color: #FFF;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .hero-title {
+      font-size: 28px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #0984E3, #6C5CE7, #E84393);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-sub {
+      color: #636E72;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero-teacher-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F8E7F6;
+      color: #8854C0;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 800;
+      border: 1.5px solid #E8C6EF;
+    }
+
+    .hero-illustration {
+      width: 120px;
+      height: 100px;
+      flex-shrink: 0;
+    }
+
+    /* Section Banner */
+    .section-badge-card {
+      background: linear-gradient(135deg, #6C5CE7, #a29bfe);
+      color: #FFF;
+      border-radius: 18px;
+      padding: 12px 18px;
+      margin: 28px 0 16px;
+      font-weight: 900;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 6px 16px rgba(108, 92, 231, 0.25);
+    }
+
+    /* Reading Passage Card */
+    .passage-card {
+      background: #FFFFFF;
+      border-left: 6px solid #00CEC9;
+      border-radius: 20px;
+      padding: 20px 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      border-top: 1.5px solid #E2E8F0;
+      border-right: 1.5px solid #E2E8F0;
+      border-bottom: 1.5px solid #E2E8F0;
+      line-height: 1.7;
+      font-size: 15px;
+      color: #2D3436;
+    }
+
+    .passage-title {
+      font-size: 17px;
+      font-weight: 900;
+      color: #0984E3;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Question Card */
+    .question-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border: 2px solid #EDF2F7;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+    }
+
+    .question-card:hover {
+      box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .q-number-pill {
+      background: #8854C0;
+      color: #FFF;
+      font-weight: 900;
+      padding: 4px 14px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      box-shadow: 0 3px 0 #5E358A;
+    }
+
+    .q-type-pill {
+      background: #E8F0FE;
+      color: #1A73E8;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .q-text {
+      font-size: 17px;
+      font-weight: 700;
+      color: #2D3436;
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .phonetic-target {
+      color: #D63031;
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    /* 3D Option Buttons */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 620px) {
+      .options-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .option-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      background: #FFFFFF;
+      border: 2px solid var(--border-color);
+      border-bottom: 5px solid #CBD5E1;
+      border-radius: 18px;
+      cursor: pointer;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #2D3436;
+      text-align: left;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .option-btn:hover:not(.disabled) {
+      transform: translateY(-2px);
+      border-color: #8854C0;
+      background: #FDFBFF;
+    }
+
+    .option-btn:active:not(.disabled) {
+      transform: translateY(2px);
+      border-bottom-width: 2px;
+    }
+
+    .opt-letter {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: #F1F2F6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #57606F;
+      flex-shrink: 0;
+      font-size: 14.5px;
+      transition: all 0.2s;
+    }
+
+    .option-btn.correct {
+      background: #EAFDF3 !important;
+      border-color: #00D26A !important;
+      border-bottom: 5px solid #00A352 !important;
+      color: #00733B !important;
+    }
+
+    .option-btn.correct .opt-letter {
+      background: #00D26A;
+      color: #FFF;
+    }
+
+    .option-btn.wrong {
+      background: #FFF1F2 !important;
+      border-color: #FF4757 !important;
+      border-bottom: 5px solid #D63031 !important;
+      color: #C0392B !important;
+      animation: shake 0.45s ease;
+    }
+
+    .option-btn.wrong .opt-letter {
+      background: #FF4757;
+      color: #FFF;
+    }
+
+    .option-btn.disabled {
+      cursor: default;
+      opacity: 0.88;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-8px); }
+      40% { transform: translateX(8px); }
+      60% { transform: translateX(-6px); }
+      80% { transform: translateX(6px); }
+    }
+
+    /* Explanation Container (Matching Screenshot 1) */
+    .explanation-box {
+      display: none;
+      background: #FAFBFF;
+      border: 2px dashed #8854C0;
+      border-radius: 20px;
+      padding: 18px 20px;
+      margin-top: 16px;
+      animation: fadeIn 0.35s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-title {
+      color: #FF4757;
+      font-size: 16.5px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .translation-bar {
+      background: #FFF8E7;
+      border-left: 5px solid #FDCB6E;
+      border-radius: 12px;
+      padding: 12px 16px;
+      color: #2D3436;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .step-section {
+      margin-bottom: 16px;
+    }
+
+    .step-header {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #2D3436;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 4-option 2x2 grid in explanation */
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 600px) {
+      .exp-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .exp-item-card {
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 14px;
+      line-height: 1.45;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .opt-name {
+      font-weight: 800;
+      color: #0984E3;
+      margin-right: 6px;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 8px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .badge-pill.bad {
+      background: #FFE8E6;
+      color: #FF4757;
+    }
+
+    .badge-pill.info {
+      background: #E8F0FE;
+      color: #2E86DE;
+    }
+
+    .badge-pill.good {
+      background: #E3FAEC;
+      color: #00B894;
+    }
+
+    .exp-item-desc {
+      color: #636E72;
+      font-weight: 600;
+    }
+
+    .why-correct-box {
+      background: #F0FFF4;
+      border: 1.5px solid #C6F6D5;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      color: #22543D;
+      font-size: 14.5px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .why-wrong-box {
+      background: #FFF5F5;
+      border: 1.5px solid #FED7D7;
+      border-radius: 14px;
+      padding: 12px 16px;
+      color: #742A2A;
+      font-size: 14.5px;
+      line-height: 1.55;
+      font-weight: 600;
+    }
+
+    .highlight-rule {
+      background: #FEFCBF;
+      color: #744210;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 800;
+    }
+
+    .highlight-target {
+      color: #00A352;
+      font-weight: 800;
+    }
+
+    .highlight-wrong {
+      color: #E53E3E;
+      font-weight: 800;
+    }
+
+    /* Submit Section */
+    .submit-bar {
+      text-align: center;
+      margin-top: 36px;
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, #FF6B8B, #FF8E53);
+      color: #FFF;
+      border: none;
+      border-bottom: 6px solid #D63031;
+      border-radius: 25px;
+      padding: 16px 42px;
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(255, 107, 139, 0.35);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 30px rgba(255, 107, 139, 0.45);
+    }
+
+    .btn-submit:active {
+      transform: translateY(3px);
+      border-bottom-width: 2px;
+    }
+
+    /* Modal Result */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 28px;
+      padding: 32px 26px;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+      border: 4px solid #FDCB6E;
+      animation: popModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popModal {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-icon {
+      font-size: 58px;
+      margin-bottom: 10px;
+    }
+
+    .modal-score {
+      font-size: 40px;
+      font-weight: 900;
+      color: #8854C0;
+      margin-bottom: 6px;
+    }
+
+    .modal-feedback {
+      background: #F8F9FA;
+      border-left: 5px solid #8854C0;
+      border-radius: 14px;
+      padding: 16px;
+      margin: 18px 0;
+      font-size: 15px;
+      line-height: 1.55;
+      color: #2D3436;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .btn-retry {
+      background: linear-gradient(135deg, #00C9A7, #00B894);
+      color: #FFF;
+      border: none;
+      border-bottom: 5px solid #008f72;
+      border-radius: 20px;
+      padding: 14px 34px;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-retry:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Bottom Promo Banner */
+    .promo-banner {
+      background: linear-gradient(135deg, #D63031 0%, #E84393 50%, #0984E3 100%);
+      border-radius: 22px;
+      padding: 18px 24px;
+      color: #FFF;
+      box-shadow: 0 10px 25px rgba(232, 67, 147, 0.25);
+      margin-top: 36px;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+
+    .promo-title {
+      font-size: 16px;
+      font-weight: 900;
+      margin-bottom: 6px;
+      letter-spacing: 0.4px;
+    }
+
+    .promo-phone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      color: #D63031;
+      padding: 5px 18px;
+      border-radius: 20px;
+      font-weight: 900;
+      font-size: 17px;
+      margin: 6px 0 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .promo-sub {
+      font-size: 13.5px;
+      font-weight: 700;
+      opacity: 0.95;
+    }
+
+    /* Confetti canvas */
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Cute Background Patterns -->
+  <div class="bg-pattern">
+    <svg class="floating-item" style="top: 6%; left: 5%; width: 44px; height: 44px;" viewBox="0 0 24 24" fill="#FDCB6E">
+      <path d="M12 1.5l3.09 6.26L22 8.77l-5 4.87 1.18 6.86L12 17.27l-6.18 3.23L7 13.64l-5-4.87 6.91-1.01L12 1.5z"/>
+    </svg>
+    <svg class="floating-item" style="top: 20%; right: 7%; width: 46px; height: 46px; animation-duration: 18s;" viewBox="0 0 24 24" fill="#FF7675">
+      <circle cx="12" cy="12" r="4" fill="#FDCB6E"/>
+      <circle cx="12" cy="5" r="3.5" fill="#FF7675"/>
+      <circle cx="19" cy="12" r="3.5" fill="#FF7675"/>
+      <circle cx="12" cy="19" r="3.5" fill="#FF7675"/>
+      <circle cx="5" cy="12" r="3.5" fill="#FF7675"/>
+    </svg>
+    <svg class="floating-item" style="top: 40%; left: 3%; width: 60px; height: 38px; animation-duration: 22s;" viewBox="0 0 24 24" fill="#FFFFFF">
+      <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+    </svg>
+    <svg class="floating-item" style="top: 62%; right: 5%; width: 48px; height: 48px; animation-duration: 16s;" viewBox="0 0 24 24" fill="#8854C0">
+      <path d="M12 3c-4.97 0-9 3.58-9 8 0 2.45 1.25 4.67 3.23 6.13L5 21l4.47-1.49C10.27 19.8 11.12 20 12 20c4.97 0 9-3.58 9-8s-4.03-9-9-9zm-3 8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+    </svg>
+    <svg class="floating-item" style="top: 85%; left: 6%; width: 42px; height: 42px; animation-duration: 20s;" viewBox="0 0 24 24" fill="#FF4757">
+      <path d="M12 3C8 3 4 7 4 12c0 4.5 4 9 8 9s8-4.5 8-9c0-5-4-9-8-9zm-1-1h2v2h-2V2z"/>
+    </svg>
+  </div>
+
+  <!-- Metro Railway & Train -->
+  <div class="bottom-railway">
+    <div class="railway-lines"></div>
+  </div>
+  <div class="animated-train">🚇 🚃 🚃</div>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="container">
+
+    <!-- Top Sticky Progress Bar (Screenshot 2 style) -->
+    <div class="top-progress-bar">
+      <div class="score-badge badge-star">
+        <span>⭐</span>
+        <span id="starCounter">0</span>/<span id="totalQuestionsCount1">40</span>
+      </div>
+      <div class="progress-track">
+        <div id="progressBarFill" class="progress-fill"></div>
+      </div>
+      <div class="score-badge badge-check">
+        <span>✅</span>
+        <span id="correctCounter">0</span>/<span id="totalQuestionsCount2">40</span>
+      </div>
+    </div>
+
+    <!-- Ms Lê Hằng Reminder Banner -->
+    <div class="warning-banner">
+      <div class="warning-title">
+        <span>⚠️</span> LỜI NHẮC CỰC KỲ QUAN TRỌNG <span>⚠️</span>
+      </div>
+      <div class="warning-text">
+        Chỉ có <span class="warning-highlight">đọc kỹ giải thích ngay sau mỗi câu</span>, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên. Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+        <br><strong>Kéo tới đâu, làm tới đó! *</strong>
+      </div>
+    </div>
+
+    <!-- Hero Card -->
+    <div class="hero-card">
+      <div>
+        <div class="hero-tag">
+          <span>🌟</span> BÀI THI THỬ VÀO 10 · ĐỀ MINH HỌA · TIẾNG ANH CHUẨN
+        </div>
+        <h1 class="hero-title">Đề Minh Họa 40 Câu Trọng Điểm</h1>
+        <div class="hero-sub">Phát âm & Trọng âm · Ngữ pháp so sánh kép · Biển báo · Đọc hiểu & Viết câu</div>
+        <div class="hero-teacher-pill">
+          <span>👩‍🏫</span> Giáo viên tạo: Ms Lê Hằng English
+        </div>
+      </div>
+      <svg class="hero-illustration" viewBox="0 0 160 140" fill="none">
+        <circle cx="80" cy="70" r="58" fill="#E8F4FD"/>
+        <rect x="35" y="45" width="28" height="65" rx="4" fill="#0984E3"/>
+        <rect x="70" y="25" width="34" height="85" rx="4" fill="#6C5CE7"/>
+        <rect x="110" y="55" width="24" height="55" rx="4" fill="#00CEC9"/>
+        <rect x="42" y="55" width="5" height="7" rx="1" fill="#FFF" opacity="0.8"/>
+        <rect x="51" y="55" width="5" height="7" rx="1" fill="#FFF" opacity="0.8"/>
+        <rect x="42" y="68" width="5" height="7" rx="1" fill="#FFF" opacity="0.8"/>
+        <rect x="51" y="68" width="5" height="7" rx="1" fill="#FFF" opacity="0.8"/>
+        <rect x="78" y="35" width="6" height="8" rx="1" fill="#FFEAA7"/>
+        <rect x="90" y="35" width="6" height="8" rx="1" fill="#FFEAA7"/>
+        <rect x="78" y="50" width="6" height="8" rx="1" fill="#FFEAA7"/>
+        <rect x="90" y="50" width="6" height="8" rx="1" fill="#FFEAA7"/>
+        <circle cx="130" cy="25" r="14" fill="#FDCB6E"/>
+      </svg>
+    </div>
+
+    <!-- Questions Container -->
+    <div id="questionsContainer"></div>
+
+    <!-- Submit Section -->
+    <div class="submit-bar">
+      <button class="btn-submit" onclick="submitTest()">
+        <span>🚀</span> NỘP BÀI & XEM ĐÁNH GIÁ TỔNG KẾT
+      </button>
+    </div>
+
+    <!-- Bottom Promo Banner (Screenshot 2 style) -->
+    <div class="promo-banner">
+      <div class="promo-title">ĐĂNG KÝ KHOÁ HỌC TIẾNG ANH LỚP 1 → 12 CÙNG MS LÊ HẰNG ENGLISH</div>
+      <div>
+        <div class="promo-phone-pill">
+          <span>☎️</span> HOTLINE: 0988.xxx.xxx (Ms Lê Hằng English)
+        </div>
+      </div>
+      <div class="promo-sub">
+        ✨ Trải nghiệm hệ thống bài tập web độc lạ · Chấm tự động · Giải chi tiết siêu đẹp · Luyện thi vào 10 hiệu quả!
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Score Summary Modal -->
+  <div id="resultModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-icon" id="modalEmoji">🎉</div>
+      <h2 style="font-size: 26px; font-weight: 900; color: #2D3436; margin-bottom: 6px;">KẾT QUẢ ĐỀ MINH HỌA</h2>
+      <div class="modal-score" id="modalScoreText">0 / 40</div>
+      <div id="modalPercent" style="font-size: 16px; font-weight: 800; color: #636E72;">(0%)</div>
+      
+      <div class="modal-feedback" id="modalTeacherNote">
+        <!-- Feedback note -->
+      </div>
+
+      <button class="btn-retry" onclick="restartTest()">
+        🔄 Làm lại bài từ đầu
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const questionsData = [{"id": 1, "section": "Pronunciation (Phát âm)", "question": "Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part differs from the other three in pronunciation:", "options": [{"key": "A", "text": "deadl<u class='phonetic-target'>i</u>ne", "isCorrect": true}, {"key": "B", "text": "optim<u class='phonetic-target'>i</u>stic", "isCorrect": false}, {"key": "C", "text": "<u class='phonetic-target'>i</u>nform", "isCorrect": false}, {"key": "D", "text": "m<u class='phonetic-target'>i</u>nimise", "isCorrect": false}], "explanation": {"translation": "Chọn từ có phần gạch chân phát âm khác với ba từ còn lại.", "analysis": [{"text": "deadline", "badge": "/aɪ/", "badgeClass": "good", "desc": "= /ˈded.laɪn/ (n): hạn chót - chữ 'i' phát âm là âm đôi /aɪ/"}, {"text": "optimistic", "badge": "/ɪ/", "badgeClass": "info", "desc": "= /ˌɒp.tɪˈmɪs.tɪk/ (adj): lạc quan - chữ 'i' phát âm là /ɪ/"}, {"text": "inform", "badge": "/ɪ/", "badgeClass": "info", "desc": "= /ɪnˈfɔːm/ (v): thông báo - chữ 'i' phát âm là /ɪ/"}, {"text": "minimise", "badge": "/ɪ/", "badgeClass": "info", "desc": "= /ˈmɪn.ɪ.maɪz/ (v): giảm thiểu - chữ 'i' đầu tiên phát âm là /ɪ/"}], "whyCorrect": {"rule": "Phát âm nguyên âm 'i' (/aɪ/ vs /ɪ/)", "detail": "Phần gạch chân của từ <span class='highlight-target'>deadline</span> được phát âm là nguyên âm đôi <span class='highlight-target'>/aɪ/</span>, trong khi ở 3 từ còn lại ('optimistic', 'inform', 'minimise'), chữ 'i' được phát âm là nguyên âm ngắn <strong>/ɪ/</strong>."}, "whyWrong": [{"opt": "optimistic", "reason": "chữ 'i' phát âm là /ɪ/ (ngắn)."}, {"opt": "inform", "reason": "chữ 'i' phát âm là /ɪ/ (ngắn)."}, {"opt": "minimise", "reason": "chữ 'i' đầu tiên phát âm là /ɪ/ (ngắn)."}]}}, {"id": 2, "section": "Pronunciation (Phát âm âm câm)", "question": "Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part differs from the other three in pronunciation:", "options": [{"key": "A", "text": "ha<u class='phonetic-target'>t</u>e", "isCorrect": false}, {"key": "B", "text": "la<u class='phonetic-target'>t</u>est", "isCorrect": false}, {"key": "C", "text": "lis<u class='phonetic-target'>t</u>en", "isCorrect": true}, {"key": "D", "text": "clima<u class='phonetic-target'>t</u>e", "isCorrect": false}], "explanation": {"translation": "Chọn từ có phần gạch chân phát âm khác với ba từ còn lại.", "analysis": [{"text": "hate", "badge": "/t/", "badgeClass": "info", "desc": "= /heɪt/ (v): ghét - chữ 't' được phát âm rõ ràng là /t/"}, {"text": "latest", "badge": "/t/", "badgeClass": "info", "desc": "= /ˈleɪ.tɪst/ (adj): mới nhất - chữ 't' phát âm là /t/"}, {"text": "listen", "badge": "âm câm (silent)", "badgeClass": "good", "desc": "= /ˈlɪs.ən/ (v): lắng nghe - chữ 't' là ÂM CÂM, không phát âm"}, {"text": "climate", "badge": "/t/", "badgeClass": "info", "desc": "= /ˈklaɪ.mət/ (n): khí hậu - chữ 't' phát âm là /t/"}], "whyCorrect": {"rule": "Quy tắc âm câm (Silent letter 't')", "detail": "Trong từ <span class='highlight-target'>listen</span>, chữ 't' là âm câm hoàn toàn (silent /t/) đọc là <strong>/ˈlɪs.ən/</strong>, còn ở ba từ 'hate', 'latest', 'climate' chữ 't' đều được bật âm thành phụ âm <strong>/t/</strong> rõ ràng."}, "whyWrong": [{"opt": "hate", "reason": "chữ 't' được phát âm là /t/."}, {"opt": "latest", "reason": "chữ 't' được phát âm là /t/."}, {"opt": "climate", "reason": "chữ 't' được phát âm là /t/."}]}}, {"id": 3, "section": "Stress (Trọng âm từ 2-4 âm tiết)", "question": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress:", "options": [{"key": "A", "text": "police", "isCorrect": false}, {"key": "B", "text": "garbage", "isCorrect": true}, {"key": "C", "text": "community", "isCorrect": false}, {"key": "D", "text": "around", "isCorrect": false}], "explanation": {"translation": "Chọn từ có vị trí trọng âm chính khác với ba từ còn lại.", "analysis": [{"text": "police", "badge": "trọng âm 2", "badgeClass": "info", "desc": "= /pəˈliːs/ (n): cảnh sát - trọng âm rơi vào âm tiết thứ 2"}, {"text": "garbage", "badge": "trọng âm 1", "badgeClass": "good", "desc": "= /ˈɡɑː.bɪdʒ/ (n): rác thải - trọng âm rơi vào âm tiết thứ 1"}, {"text": "community", "badge": "trọng âm 2", "badgeClass": "info", "desc": "= /kəˈmjuː.nə.ti/ (n): cộng đồng - trọng âm rơi vào âm tiết thứ 2"}, {"text": "around", "badge": "trọng âm 2", "badgeClass": "info", "desc": "= /əˈraʊnd/ (prep/adv): xung quanh - trọng âm rơi vào âm tiết thứ 2"}], "whyCorrect": {"rule": "Quy tắc trọng âm danh từ 2 âm tiết vs các từ khác", "detail": "Từ <span class='highlight-target'>garbage</span> có trọng âm rơi vào âm tiết thứ nhất (1), trong khi các từ còn lại ('police', 'community', 'around') đều có trọng âm rơi vào âm tiết thứ hai (2)."}, "whyWrong": [{"opt": "police", "reason": "danh từ đặc biệt có nguồn gốc tiếng Pháp, trọng âm rơi vào âm 2 /pəˈliːs/."}, {"opt": "community", "reason": "đuôi -ity làm trọng âm rơi vào âm ngay trước nó (âm 2)."}, {"opt": "around", "reason": "bắt đầu bằng âm /ə/ nên trọng âm rơi vào âm 2."}]}}, {"id": 4, "section": "Stress (Trọng âm từ 2-4 âm tiết)", "question": "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress:", "options": [{"key": "A", "text": "pottery", "isCorrect": false}, {"key": "B", "text": "suburb", "isCorrect": false}, {"key": "C", "text": "handicraft", "isCorrect": false}, {"key": "D", "text": "facility", "isCorrect": true}], "explanation": {"translation": "Chọn từ có vị trí trọng âm chính khác với ba từ còn lại.", "analysis": [{"text": "pottery", "badge": "trọng âm 1", "badgeClass": "info", "desc": "= /ˈpɒt.ər.i/ (n): đồ gốm - trọng âm rơi vào âm tiết thứ 1"}, {"text": "suburb", "badge": "trọng âm 1", "badgeClass": "info", "desc": "= /ˈsʌb.ɜːb/ (n): ngoại ô - trọng âm rơi vào âm tiết thứ 1"}, {"text": "handicraft", "badge": "trọng âm 1", "badgeClass": "info", "desc": "= /ˈhæn.dɪ.krɑːft/ (n): nghề thủ công - trọng âm rơi vào âm tiết thứ 1"}, {"text": "facility", "badge": "trọng âm 2", "badgeClass": "good", "desc": "= /fəˈsɪl.ə.ti/ (n): cơ sở vật chất - trọng âm rơi vào âm tiết thứ 2"}], "whyCorrect": {"rule": "Hậu tố -ity và trọng âm từ 3-4 âm tiết", "detail": "Từ <span class='highlight-target'>facility</span> có hậu tố '-ity' nên trọng âm rơi vào âm tiết thứ hai <strong>/fəˈsɪl.ə.ti/</strong>. Ba từ còn lại ('pottery', 'suburb', 'handicraft') đều có trọng âm rơi vào âm tiết thứ nhất."}, "whyWrong": [{"opt": "pottery", "reason": "danh từ 3 âm tiết có trọng âm rơi vào âm 1 /ˈpɒt.ər.i/."}, {"opt": "suburb", "reason": "danh từ 2 âm tiết có trọng âm rơi vào âm 1 /ˈsʌb.ɜːb/."}, {"opt": "handicraft", "reason": "danh từ ghép 3 âm tiết có trọng âm rơi vào âm 1 /ˈhæn.dɪ.krɑːft/."}]}}, {"id": 5, "section": "Grammar (So sánh kép - Double Comparative)", "question": "______ I leave home, ______ the journey is because the buses aren’t so crowded.", "options": [{"key": "A", "text": "The more early - the more easy", "isCorrect": false}, {"key": "B", "text": "The earlier - the more easy", "isCorrect": false}, {"key": "C", "text": "The earlier - the easier", "isCorrect": true}, {"key": "D", "text": "The more early - the easier", "isCorrect": false}], "explanation": {"translation": "Tôi rời nhà càng sớm thì chuyến đi càng dễ dàng vì xe buýt không quá đông đúc.", "analysis": [{"text": "The more early - the more easy", "badge": "❌ Sai dạng", "badgeClass": "bad", "desc": "= early và easy là tính từ/trạng từ ngắn có đuôi -y, không dùng 'more'"}, {"text": "The earlier - the more easy", "badge": "❌ Nửa đúng nửa sai", "badgeClass": "bad", "desc": "= 'more easy' sai dạng so sánh hơn của easy"}, {"text": "The earlier - the easier", "badge": "✅ Chuẩn cấu trúc", "badgeClass": "good", "desc": "= The + comparative, the + comparative (càng... càng...)"}, {"text": "The more early - the easier", "badge": "❌ Sai vế đầu", "badgeClass": "bad", "desc": "= 'more early' là sai ngữ pháp"}], "whyCorrect": {"rule": "Cấu trúc So sánh kép: The + comparative, the + comparative", "detail": "Cả 'early' và 'easy' đều là từ 2 âm tiết kết thúc bằng đuôi '-y', khi chuyển sang so sánh hơn ta đổi 'y' thành 'i' rồi thêm '-er': <span class='highlight-target'>early -> earlier</span> và <span class='highlight-target'>easy -> easier</span>. Công thức chuẩn: <strong>The earlier..., the easier...</strong>."}, "whyWrong": [{"opt": "The more early - the more easy", "reason": "tính từ kết thúc bằng 'y' không kết hợp với 'more'."}, {"opt": "The earlier - the more easy", "reason": "dùng 'the more easy' là sai dạng so sánh hơn."}, {"opt": "The more early - the easier", "reason": "dùng 'the more early' là sai ngữ pháp."}]}}, {"id": 6, "section": "Communication (Giao tiếp xã hội)", "question": "Linh is asking Trang for help.<br>Linh: “Do you mind carrying this suitcase for me?”<br>Trang: “______”", "options": [{"key": "A", "text": "My mistake!", "isCorrect": false}, {"key": "B", "text": "Thank you. That’s so kind of you!", "isCorrect": false}, {"key": "C", "text": "Not at all.", "isCorrect": true}, {"key": "D", "text": "Certainly!", "isCorrect": false}], "explanation": {"translation": "Linh đang nhờ Trang giúp đỡ.<br>Linh: 'Bạn có phiền xách chiếc vali này giúp mình không?'<br>Trang: 'Không hề phiền chút nào đâu.'", "analysis": [{"text": "My mistake!", "badge": "Lỗi của tôi!", "badgeClass": "bad", "desc": "= dùng để nhận lỗi, không hợp hoàn cảnh nhờ vả"}, {"text": "Thank you. That’s so kind of you!", "badge": "Cảm ơn bạn...", "badgeClass": "bad", "desc": "= dùng khi nhận được sự giúp đỡ, ở đây Trang là người được nhờ"}, {"text": "Not at all.", "badge": "Không hề phiền chút nào", "badgeClass": "good", "desc": "= câu trả lời đồng ý giúp đỡ chuẩn mực cho câu hỏi 'Do you mind...?'"}, {"text": "Certainly!", "badge": "Chắc chắn rồi!", "badgeClass": "bad", "desc": "= nếu nói Certainly thì mang nghĩa 'Tôi chắc chắn thấy phiền đấy'"}], "whyCorrect": {"rule": "Cách đáp lại câu hỏi 'Do you mind + V-ing?'", "detail": "Câu hỏi 'Do you mind...?' có nghĩa là 'Bạn có phiền nếu... không?'. Khi đồng ý giúp đỡ (nghĩa là mình KHÔNG thấy phiền), ta phải dùng câu phủ định: <span class='highlight-target'>No, not at all</span> (Không hề phiền chút nào) hoặc <strong>Of course not / No problem</strong>."}, "whyWrong": [{"opt": "My mistake!", "reason": "dùng khi xin lỗi vì mắc sai lầm."}, {"opt": "Thank you...", "reason": "đây là lời cảm ơn của người nhờ, không phải người được nhờ."}, {"opt": "Certainly!", "reason": "mang nghĩa khẳng định đồng ý là 'có phiền', khiến người nghe hiểu lầm là từ chối."}]}}, {"id": 7, "section": "Grammar (So sánh kép)", "question": "Mr Buong thinks the bigger the city is, ______ the cost of living is.", "options": [{"key": "A", "text": "higher", "isCorrect": false}, {"key": "B", "text": "the higher", "isCorrect": true}, {"key": "C", "text": "the highest", "isCorrect": false}, {"key": "D", "text": "highest", "isCorrect": false}], "explanation": {"translation": "Thầy Buông nghĩ rằng thành phố càng lớn thì chi phí sinh hoạt càng cao.", "analysis": [{"text": "higher", "badge": "thiếu mạo từ the", "badgeClass": "bad", "desc": "= trong cấu trúc so sánh kép bắt buộc phải có mạo từ 'the'"}, {"text": "the higher", "badge": "the + comparative", "badgeClass": "good", "desc": "= công thức chuẩn: the + tính từ so sánh hơn"}, {"text": "the highest", "badge": "so sánh nhất", "badgeClass": "bad", "desc": "= cấu trúc so sánh kép không dùng so sánh nhất -est"}, {"text": "highest", "badge": "so sánh nhất thiếu the", "badgeClass": "bad", "desc": "= sai cả về dạng thức và cấu trúc"}], "whyCorrect": {"rule": "Công thức so sánh kép song song", "detail": "Cấu trúc so sánh đồng tiến: <span class='highlight-target'>The + comparative + S1 + V1, the + comparative + S2 + V2</span>. Vế trước là 'the bigger' thì vế sau tương ứng phải là <strong>the higher</strong>."}, "whyWrong": [{"opt": "higher", "reason": "thiếu 'the' ở đầu mệnh đề so sánh kép."}, {"opt": "the highest", "reason": "đây là so sánh nhất, không dùng trong cấu trúc 'càng... càng...'."}, {"opt": "highest", "reason": "sai cả cấu trúc so sánh nhất lẫn cấu trúc so sánh kép."}]}}, {"id": 8, "section": "Phrasal Verb (Cụm động từ)", "question": "Alex rarely uses the bus, so his mother often ______ him up at school.", "options": [{"key": "A", "text": "gets", "isCorrect": false}, {"key": "B", "text": "picks", "isCorrect": true}, {"key": "C", "text": "turns", "isCorrect": false}, {"key": "D", "text": "looks", "isCorrect": false}], "explanation": {"translation": "Alex hiếm khi đi xe buýt, vì vậy mẹ anh ấy thường đón anh ấy ở trường.", "analysis": [{"text": "gets", "badge": "get sb up", "badgeClass": "bad", "desc": "= đánh thức ai dậy, không phải là đón"}, {"text": "picks", "badge": "pick sb up", "badgeClass": "good", "desc": "= đón ai đó bằng xe cộ (đón học sinh tan trường)"}, {"text": "turns", "badge": "turn sb up", "badgeClass": "bad", "desc": "= không có nghĩa là đón ai"}, {"text": "looks", "badge": "look sb up", "badgeClass": "bad", "desc": "= tra cứu thông tin hoặc ghé thăm ai sau thời gian dài"}], "whyCorrect": {"rule": "Cụm động từ 'pick someone up'", "detail": "Cụm động từ cố định chỉ việc đón ai bằng phương tiện giao thông: <span class='highlight-target'>pick someone up</span>. Chủ ngữ 'his mother' là số ít nên chia thêm 's' thành <strong>picks him up</strong>."}, "whyWrong": [{"opt": "gets", "reason": "get up nghĩa là thức dậy."}, {"opt": "turns", "reason": "turn up nghĩa là xuất hiện, đến."}, {"opt": "looks", "reason": "look up nghĩa là tra từ điển hoặc tra cứu thông tin."}]}}, {"id": 9, "section": "Vocabulary (Từ vựng chỉ đặc điểm đô thị)", "question": "Ha Noi is like a concrete jungle with so many people in it. It’s a/an ______ city.", "options": [{"key": "A", "text": "bustling", "isCorrect": true}, {"key": "B", "text": "quiet", "isCorrect": false}, {"key": "C", "text": "old", "isCorrect": false}, {"key": "D", "text": "peaceful", "isCorrect": false}], "explanation": {"translation": "Hà Nội giống như một khu rừng bê tông với rất nhiều người sống ở đó. Đó là một thành phố nhộn nhịp, hối hả.", "analysis": [{"text": "bustling", "badge": "adj - nhộn nhịp, sôi động", "badgeClass": "good", "desc": "= đầy ắp người và hoạt động hối hả, hoàn toàn khớp với 'concrete jungle with so many people'"}, {"text": "quiet", "badge": "adj - yên tĩnh", "badgeClass": "bad", "desc": "= yên ắng, trái ngược với nơi có quá đông người"}, {"text": "old", "badge": "adj - cổ kính, già", "badgeClass": "bad", "desc": "= không phản ánh đặc tính đông đúc như rừng bê tông"}, {"text": "peaceful", "badge": "adj - thanh bình", "badgeClass": "bad", "desc": "= trái ngược với sự hối hả, chen chúc"}], "whyCorrect": {"rule": "Ngữ cảnh miêu tả đô thị (Contextual clue)", "detail": "Cụm từ ẩn dụ 'concrete jungle with so many people' (khu rừng bê tông với vô số người chen chúc) gợi tả một đô thị cực kỳ tấp nập, đông đúc. Tính từ chính xác nhất là <span class='highlight-target'>bustling</span> (nhộn nhịp, hối hả)."}, "whyWrong": [{"opt": "quiet", "reason": "yên tĩnh, trái ngược hoàn toàn với ngữ cảnh đông đúc."}, {"opt": "old", "reason": "chỉ nói về tuổi tác/lịch sử, không mô tả cảnh tượng người đông đúc."}, {"opt": "peaceful", "reason": "thanh bình, đối lập với hình ảnh 'rừng bê tông'."}]}}, {"id": 10, "section": "Vocabulary (Từ vựng sân bay, thời tiết)", "question": "They ______ the flight to Phu Quoc because of the weather.", "options": [{"key": "A", "text": "delayed", "isCorrect": true}, {"key": "B", "text": "managed", "isCorrect": false}, {"key": "C", "text": "joined", "isCorrect": false}, {"key": "D", "text": "accomplished", "isCorrect": false}], "explanation": {"translation": "Họ đã hoãn chuyến bay đến Phú Quốc vì lý do thời tiết.", "analysis": [{"text": "delayed", "badge": "v - trì hoãn, hoãn lại", "badgeClass": "good", "desc": "= delay a flight: hoãn chuyến bay do thời tiết xấu"}, {"text": "managed", "badge": "v - quản lý, xoay xở", "badgeClass": "bad", "desc": "= không kết hợp với chuyến bay theo nghĩa do thời tiết"}, {"text": "joined", "badge": "v - tham gia", "badgeClass": "bad", "desc": "= tham gia chuyến bay, không phù hợp với vế 'because of the weather'"}, {"text": "accomplished", "badge": "v - hoàn thành xuất sắc", "badgeClass": "bad", "desc": "= hoàn thành mục tiêu/nhiệm vụ, không đi với chuyến bay"}], "whyCorrect": {"rule": "Cụm từ Collocation sân bay: delay a flight", "detail": "Khi gặp điều kiện thời tiết xấu ('because of the weather'), các hãng hàng không thường phải hoãn chuyến bay: <span class='highlight-target'>delay the flight</span>."}, "whyWrong": [{"opt": "managed", "reason": "quản lý hoặc xoay xở (manage to do sth), sai ngữ cảnh."}, {"opt": "joined", "reason": "tham gia, không ai dùng 'họ tham gia chuyến bay vì thời tiết'."}, {"opt": "accomplished", "reason": "hoàn thành nhiệm vụ/thành tựu, không dùng cho chuyến bay."}]}}, {"id": 11, "section": "Grammar (Câu điều kiện loại 1 & Danh từ số nhiều bất quy tắc)", "question": "You will have to go to the dentist’s again if your teeth still ______.", "options": [{"key": "A", "text": "hurt", "isCorrect": true}, {"key": "B", "text": "hurts", "isCorrect": false}, {"key": "C", "text": "to hurt", "isCorrect": false}, {"key": "D", "text": "will hurt", "isCorrect": false}], "explanation": {"translation": "Bạn sẽ phải đi khám nha sĩ lần nữa nếu những chiếc răng của bạn vẫn còn đau.", "analysis": [{"text": "hurt", "badge": "V nguyên thể", "badgeClass": "good", "desc": "= chia theo chủ ngữ số nhiều 'teeth' ở thì Hiện tại đơn trong mệnh đề If"}, {"text": "hurts", "badge": "V-s số ít", "badgeClass": "bad", "desc": "= chỉ dùng cho danh từ số ít (tooth), ở đây là số nhiều (teeth)"}, {"text": "to hurt", "badge": "to-V", "badgeClass": "bad", "desc": "= mệnh đề if cần một động từ có thì làm vị ngữ chính"}, {"text": "will hurt", "badge": "tương lai đơn", "badgeClass": "bad", "desc": "= tuyệt đối không dùng will trong mệnh đề IF"}], "whyCorrect": {"rule": "Câu điều kiện loại 1 & Danh từ số nhiều bất quy tắc 'teeth'", "detail": "1. Mệnh đề IF của câu điều kiện loại 1 chia ở thì Hiện tại đơn: <em>If + S + V(s/es)</em>.<br>2. Chủ ngữ <span class='highlight-target'>teeth</span> là danh từ số nhiều bất quy tắc của 'tooth' (những chiếc răng) -> động từ ở dạng nguyên thể không chia: <strong>hurt</strong>."}, "whyWrong": [{"opt": "hurts", "reason": "chia số ít là nhầm lẫn 'teeth' thành số ít (dạng số ít là 'tooth')."}, {"opt": "to hurt", "reason": "thiếu động từ chia thì cho mệnh đề If."}, {"opt": "will hurt", "reason": "sai quy tắc ngữ pháp: không dùng thì tương lai 'will' trong mệnh đề điều kiện If."}]}}, {"id": 12, "section": "Grammar (Câu điều kiện loại 1 với động từ khuyết thiếu)", "question": "If he is good at IT, he ______ get a good job.", "options": [{"key": "A", "text": "could", "isCorrect": false}, {"key": "B", "text": "must", "isCorrect": false}, {"key": "C", "text": "may", "isCorrect": true}, {"key": "D", "text": "would", "isCorrect": false}], "explanation": {"translation": "Nếu anh ấy giỏi công nghệ thông tin, anh ấy có thể sẽ nhận được một công việc tốt.", "analysis": [{"text": "could", "badge": "ĐK loại 2", "badgeClass": "bad", "desc": "= dùng cho câu điều kiện loại 2 trái ngược hiện tại"}, {"text": "must", "badge": "bắt buộc", "badgeClass": "bad", "desc": "= diễn đạt sự ép buộc phải làm, không phù hợp chỉ kết quả khả thi"}, {"text": "may", "badge": "ĐK loại 1 (chỉ khả năng)", "badgeClass": "good", "desc": "= may + V nguyên thể chỉ khả năng có thể xảy ra trong tương lai"}, {"text": "would", "badge": "ĐK loại 2", "badgeClass": "bad", "desc": "= dùng cho câu điều kiện loại 2"}], "whyCorrect": {"rule": "Mệnh đề chính câu điều kiện loại 1", "detail": "Mệnh đề If chia ở hiện tại đơn ('If he is good at IT') là câu điều kiện loại 1 diễn tả sự việc có thể xảy ra ở hiện tại hoặc tương lai. Mệnh đề chính có thể dùng <span class='highlight-target'>may / can / will + V nguyên mẫu</span> để diễn tả một khả năng: <strong>he may get a good job</strong>."}, "whyWrong": [{"opt": "could", "reason": "thuộc về câu điều kiện loại 2."}, {"opt": "must", "reason": "mang nghĩa ép buộc anh ấy 'phải' có việc làm, không hợp lý."}, {"opt": "would", "reason": "thuộc về câu điều kiện loại 2, mâu thuẫn với 'is' ở hiện tại."}]}}, {"id": 13, "section": "Cloze Reading - Recruitment (Điền giới từ)", "question": "English is spoken by millions of people (13)______ the world.", "options": [{"key": "A", "text": "across", "isCorrect": true}, {"key": "B", "text": "under", "isCorrect": false}, {"key": "C", "text": "above", "isCorrect": false}, {"key": "D", "text": "through", "isCorrect": false}], "explanation": {"translation": "Tiếng Anh được nói bởi hàng triệu người trên khắp thế giới.", "analysis": [{"text": "across", "badge": "prep - trên khắp", "badgeClass": "good", "desc": "= across the world / across the globe: trên toàn cầu, khắp nơi trên thế giới"}, {"text": "under", "badge": "prep - bên dưới", "badgeClass": "bad", "desc": "= dưới mặt đất/đáy thế giới, hoàn toàn vô lý"}, {"text": "above", "badge": "prep - phía trên", "badgeClass": "bad", "desc": "= bên trên bầu trời thế giới, sai nghĩa"}, {"text": "through", "badge": "prep - xuyên qua", "badgeClass": "bad", "desc": "= đi xuyên qua vật thể, không đi với 'the world' theo nghĩa này"}], "whyCorrect": {"rule": "Cụm từ cố định: across the world", "detail": "Cụm từ biểu đạt quy mô toàn cầu: <span class='highlight-target'>across the world</span> (= around the world / throughout the world) mang nghĩa là trên khắp thế giới."}, "whyWrong": [{"opt": "under", "reason": "dưới thế giới, sai nghĩa hoàn toàn."}, {"opt": "above", "reason": "phía trên thế giới, không hợp ngữ cảnh."}, {"opt": "through", "reason": "xuyên qua, không tạo thành cụm từ chuẩn."}]}}, {"id": 14, "section": "Cloze Reading - Recruitment (Điền mạo từ)", "question": "It is often referred to as (14)______ global language.", "options": [{"key": "A", "text": "the", "isCorrect": false}, {"key": "B", "text": "a", "isCorrect": true}, {"key": "C", "text": "x (no article)", "isCorrect": false}, {"key": "D", "text": "an", "isCorrect": false}], "explanation": {"translation": "Nó thường được gọi là một ngôn ngữ toàn cầu.", "analysis": [{"text": "the", "badge": "mạo từ xác định", "badgeClass": "bad", "desc": "= chỉ dùng khi đối tượng đã xác định duy nhất được nhắc từ trước"}, {"text": "a", "badge": "mạo từ không xác định", "badgeClass": "good", "desc": "= dùng trước danh từ số ít đếm được bắt đầu bằng một phụ âm (/ɡ/ trong global)"}, {"text": "x (no article)", "badge": "không mạo từ", "badgeClass": "bad", "desc": "= danh từ đếm được số ít 'language' bắt buộc phải có mạo từ"}, {"text": "an", "badge": "mạo từ trước nguyên âm", "badgeClass": "bad", "desc": "= 'global' bắt đầu bằng phụ âm /ɡ/, không dùng 'an'"}], "whyCorrect": {"rule": "Quy tắc dùng mạo từ A / AN trước danh từ số ít", "detail": "Từ 'language' là danh từ đếm được số ít, đứng trước nó là tính từ 'global' bắt đầu bằng phụ âm /ɡ/ -> ta dùng mạo từ không xác định <span class='highlight-target'>a global language</span> (một ngôn ngữ mang tính toàn cầu)."}, "whyWrong": [{"opt": "the", "reason": "ở đây định nghĩa tiếng Anh như một ngôn ngữ toàn cầu (một trong các vai trò), không dùng the."}, {"opt": "x (no article)", "reason": "danh từ số ít đếm được không thể đứng trơ trọi không mạo từ."}, {"opt": "an", "reason": "chỉ đi với từ bắt đầu bằng nguyên âm (u, e, o, a, i)."}]}}, {"id": 15, "section": "Cloze Reading - Recruitment (Điền động từ)", "question": "(15)______ newspapers in English can help you stay informed.", "options": [{"key": "A", "text": "Watching", "isCorrect": false}, {"key": "B", "text": "Hearing", "isCorrect": false}, {"key": "C", "text": "Listening", "isCorrect": false}, {"key": "D", "text": "Reading", "isCorrect": true}], "explanation": {"translation": "Đọc báo bằng tiếng Anh có thể giúp bạn luôn cập nhật thông tin.", "analysis": [{"text": "Watching", "badge": "v - xem", "badgeClass": "bad", "desc": "= xem TV, xem phim (watch TV/movies), không đi với báo in"}, {"text": "Hearing", "badge": "v - nghe thấy", "badgeClass": "bad", "desc": "= tiếp nhận âm thanh vô thức"}, {"text": "Listening", "badge": "v - lắng nghe", "badgeClass": "bad", "desc": "= nghe nhạc, nghe đài (listen to radio), cần giới từ to"}, {"text": "Reading", "badge": "v - đọc", "badgeClass": "good", "desc": "= read newspapers: đọc báo - danh động từ làm chủ ngữ"}], "whyCorrect": {"rule": "Collocation với danh từ Newspapers: Read newspapers", "detail": "Báo giấy là ấn phẩm dạng văn bản viết nên hành động tương ứng duy nhất là <span class='highlight-target'>Reading newspapers</span> (đọc báo)."}, "whyWrong": [{"opt": "Watching", "reason": "chỉ dùng cho hình ảnh chuyển động như phim ảnh, TV."}, {"opt": "Hearing", "reason": "chỉ thính giác nghe thấy âm thanh."}, {"opt": "Listening", "reason": "chỉ hành động nghe (phải có giới từ to: listen to music)."}]}}, {"id": 16, "section": "Cloze Reading - Recruitment (Điền lượng từ)", "question": "Learning English can open doors to (16)______ new opportunities.", "options": [{"key": "A", "text": "many", "isCorrect": true}, {"key": "B", "text": "much", "isCorrect": false}, {"key": "C", "text": "few", "isCorrect": false}, {"key": "D", "text": "some", "isCorrect": false}], "explanation": {"translation": "Học tiếng Anh có thể mở ra cánh cửa dẫn tới nhiều cơ hội mới.", "analysis": [{"text": "many", "badge": "nhiều (+ N đếm được số nhiều)", "badgeClass": "good", "desc": "= đi với danh từ số nhiều 'opportunities' mang ý nghĩa tích cực, mở rộng"}, {"text": "much", "badge": "nhiều (+ N không đếm được)", "badgeClass": "bad", "desc": "= chỉ đi với danh từ không đếm được"}, {"text": "few", "badge": "rất ít, hầu như không có", "badgeClass": "bad", "desc": "= mang sắc thái tiêu cực (rất ít cơ hội), trái ngược với lời khuyên học tiếng Anh"}, {"text": "some", "badge": "một vài", "badgeClass": "bad", "desc": "= không làm nổi bật được sự phong phú, to lớn bằng 'many' trong bài quảng cáo"}], "whyCorrect": {"rule": "Lượng từ Many + Danh từ số nhiều đếm được", "detail": "Từ 'opportunities' (những cơ hội) là danh từ số nhiều đếm được. Trong văn cảnh khuyến khích học tiếng Anh mang lại rất nhiều cơ hội, từ chính xác nhất là <span class='highlight-target'>many new opportunities</span>."}, "whyWrong": [{"opt": "much", "reason": "chỉ đi với danh từ không đếm được (much water, much time)."}, {"opt": "few", "reason": "nghĩa là 'hầu như không có', phá vỡ hoàn toàn thông điệp tích cực của bài viết."}, {"opt": "some", "reason": "nghĩa là một vài, yếu hơn rất nhiều so với 'many' trong quảng cáo tuyển sinh/giáo dục."}]}}, {"id": 17, "section": "Text Coherence (Sắp xếp câu hoàn chỉnh đoạn văn)", "question": "Put the sentences (a-c) in the correct order, then fill in the blank to make a logical text.<br><em>'Teenagers may want to work part-time while they are students in high schools. Let's look at the advantages and disadvantages of having part-time jobs. Firstly, a part-time job provides students with extra pocket money. ____________.'</em><br>a. If teenagers fail to balance work and study, they may not be able to get good grades or may even drop out of school.<br>b. On the other hand, working teens may become tired and stressed as they will have less time to rest and study.<br>c. Secondly, they can learn to manage their time better.", "options": [{"key": "A", "text": "b – c – a", "isCorrect": false}, {"key": "B", "text": "a – c – b", "isCorrect": false}, {"key": "C", "text": "c – b – a", "isCorrect": true}, {"key": "D", "text": "b – a – c", "isCorrect": false}], "explanation": {"translation": "Thứ tự sắp xếp đúng: c -> b -> a:<br>c. Thứ hai, các em có thể học cách quản lý thời gian tốt hơn.<br>b. Mặt khác, thanh thiếu niên đi làm có thể trở nên mệt mỏi và căng thẳng vì các em sẽ có ít thời gian hơn để nghỉ ngơi và học tập.<br>a. Nếu các em không cân bằng được công việc và học tập, các em có thể không đạt điểm cao hoặc thậm chí bỏ học.", "analysis": [{"text": "c – b – a", "badge": "✅ Đúng mạch tư duy", "badgeClass": "good", "desc": "= Nối tiếp Firstly bằng Secondly (c) -> Chuyển sang bất lợi bằng On the other hand (b) -> Nêu hệ quả chi tiết bằng If (a)"}, {"text": "b – c – a", "badge": "❌ Lộn xộn ý", "badgeClass": "bad", "desc": "= Đang nói lợi ích lại chèn 'On the other hand' rồi mới nói 'Secondly'"}, {"text": "a – c – b", "badge": "❌ Mất liên kết", "badgeClass": "bad", "desc": "= Nêu hệ quả tiêu cực trước khi giới thiệu bất lợi"}, {"text": "b – a – c", "badge": "❌ 'Secondly' đặt cuối cùng", "badgeClass": "bad", "desc": "= Lợi ích thứ hai không thể nằm sau toàn bộ phần bất lợi"}], "whyCorrect": {"rule": "Quy tắc chuyển ý (Discourse Markers & Paragraph Structure)", "detail": "1. Đoạn mở đầu nói: <em>'Firstly, ... extra pocket money'</em>, do đó câu tiếp theo bắt buộc phải là <strong>(c) Secondly, they can learn to manage their time better</strong> để hoàn thành các lợi ích.<br>2. Tiếp theo, cụm chuyển ý đối lập <strong>(b) On the other hand...</strong> bắt đầu phần bất lợi.<br>3. Cuối cùng, câu <strong>(a) If teenagers fail...</strong> minh họa hậu quả của sự mệt mỏi đó. Chuỗi đúng là <span class='highlight-target'>c – b – a</span>."}, "whyWrong": [{"opt": "b – c – a", "reason": "không thể đưa 'On the other hand' vào giữa Firstly và Secondly."}, {"opt": "a – c – b", "reason": "câu điều kiện (a) không thể đứng trước câu nêu bất lợi chung (b)."}, {"opt": "b – a – c", "reason": "đẩy ý lợi ích 'Secondly' xuống cuối bài sau khi đã phân tích bất lợi là phi logic."}]}}, {"id": 18, "section": "Reading & Writing (Chọn câu kết đoạn văn)", "question": "Choose the sentence that can end the text (in Question 17) most appropriately:", "options": [{"key": "A", "text": "In conclusion, teenagers should be aware of both the pros and cons of working part-time.", "isCorrect": true}, {"key": "B", "text": "In the end, students should not look for any part-time job.", "isCorrect": false}, {"key": "C", "text": "In addition, having a part-time job can provide students with more experience.", "isCorrect": false}, {"key": "D", "text": "To begin with, students can gain and develop important skills that may be useful in their future careers.", "isCorrect": false}], "explanation": {"translation": "Tóm lại, thanh thiếu niên nên nhận thức rõ cả ưu điểm và nhược điểm của việc làm thêm.", "analysis": [{"text": "Câu A", "badge": "✅ Kết luận hoàn hảo", "badgeClass": "good", "desc": "= 'In conclusion' tóm tắt trọn vẹn cả hai mặt 'pros and cons' (ưu và nhược điểm) của đề bài"}, {"text": "Câu B", "badge": "❌ Ý kiến tiêu cực cực đoan", "badgeClass": "bad", "desc": "= khuyên không nên làm thêm, bỏ qua toàn bộ phần lợi ích đã phân tích"}, {"text": "Câu C", "badge": "❌ Thêm ý mới", "badgeClass": "bad", "desc": "= 'In addition' là từ nối bổ sung ý, không dùng để kết luận bài"}, {"text": "Câu D", "badge": "❌ Dấu hiệu mở đầu", "badgeClass": "bad", "desc": "= 'To begin with' là từ nối bắt đầu phân tích, không thể dùng ở câu kết"}], "whyCorrect": {"rule": "Cấu trúc câu kết luận (Concluding Sentence)", "detail": "Bài viết nêu rõ: <em>'Let's look at the advantages and disadvantages...'</em>. Câu kết bài chuẩn mực nhất phải tóm lược lại cả hai khía cạnh này bằng liên từ kết luận: <span class='highlight-target'>In conclusion, teenagers should be aware of both the pros and cons...</span> (ưu và nhược điểm)."}, "whyWrong": [{"opt": "Câu B", "reason": "mang tính phiến diện, cấm đoán học sinh làm việc."}, {"opt": "Câu C", "reason": "chỉ đưa thêm một luận điểm phụ, không có tính khái quát kết bài."}, {"opt": "Câu D", "reason": "'To begin with' dùng để bắt đầu, không dùng để kết thúc văn bản."}]}}, {"id": 19, "section": "Cloze Reading - Healthy Lifestyles (Điền từ)", "question": "A daily exercise program is a fun way to share (19) ______ activity with family members while establishing good habits.", "options": [{"key": "A", "text": "physical", "isCorrect": true}, {"key": "B", "text": "mental", "isCorrect": false}, {"key": "C", "text": "mind", "isCorrect": false}, {"key": "D", "text": "physics", "isCorrect": false}], "explanation": {"translation": "Một chương trình tập thể dục hàng ngày là một cách thú vị để chia sẻ hoạt động thể chất với các thành viên trong gia đình.", "analysis": [{"text": "physical", "badge": "adj - thuộc thể chất", "badgeClass": "good", "desc": "= physical activity: hoạt động thể chất, vận động cơ thể"}, {"text": "mental", "badge": "adj - thuộc trí óc/tinh thần", "badgeClass": "bad", "desc": "= hoạt động trí tuệ, không khớp với việc tập thể dục (exercise)"}, {"text": "mind", "badge": "n - tâm trí", "badgeClass": "bad", "desc": "= danh từ, đứng trước activity không chuẩn ngữ pháp"}, {"text": "physics", "badge": "n - môn vật lý", "badgeClass": "bad", "desc": "= danh từ môn học, sai nghĩa hoàn toàn"}], "whyCorrect": {"rule": "Cụm danh từ cố định: Physical activity", "detail": "Tập thể dục (exercise) là một dạng hoạt động thể chất, trong tiếng Anh là cụm từ phổ biến: <span class='highlight-target'>physical activity</span>."}, "whyWrong": [{"opt": "mental", "reason": "thuộc về trí óc, trái với bản chất vận động cơ bắp của tập thể dục."}, {"opt": "mind", "reason": "danh từ tâm trí, không tạo thành cụm từ đúng."}, {"opt": "physics", "reason": "môn vật lý, hoàn toàn không liên quan."}]}}, {"id": 20, "section": "Cloze Reading - Healthy Lifestyles (Điền lượng từ)", "question": "(20) ______ vigorous activities for whole family are brisk walking, running, or cycling.", "options": [{"key": "A", "text": "Every", "isCorrect": false}, {"key": "B", "text": "Some", "isCorrect": true}, {"key": "C", "text": "A little", "isCorrect": false}, {"key": "D", "text": "Any", "isCorrect": false}], "explanation": {"translation": "Một số hoạt động vận động mạnh mẽ cho cả gia đình là đi bộ nhanh, chạy bộ hoặc đạp xe.", "analysis": [{"text": "Every", "badge": "mỗi (+ N số ít)", "badgeClass": "bad", "desc": "= chỉ đi với danh từ số ít, ở đây 'activities' là số nhiều"}, {"text": "Some", "badge": "một vài, một số (+ N số nhiều)", "badgeClass": "good", "desc": "= đi với danh từ số nhiều 'vigorous activities' và động từ 'are'"}, {"text": "A little", "badge": "một ít (+ N không đếm được)", "badgeClass": "bad", "desc": "= chỉ đi với danh từ không đếm được"}, {"text": "Any", "badge": "bất kỳ (câu hỏi/phủ định)", "badgeClass": "bad", "desc": "= thường dùng trong câu nghi vấn hoặc phủ định"}], "whyCorrect": {"rule": "Sự hòa hợp lượng từ và danh từ số nhiều đếm được", "detail": "Phía sau chỗ trống là danh từ số nhiều 'activities' và động từ to be số nhiều 'are'. Trong câu khẳng định liệt kê các hoạt động, từ chính xác là <span class='highlight-target'>Some</span> (Một số)."}, "whyWrong": [{"opt": "Every", "reason": "chỉ đi với danh từ số ít (Every activity is...)."}, {"opt": "A little", "reason": "chỉ dùng cho danh từ không đếm được (a little water)."}, {"opt": "Any", "reason": "thường dùng trong câu phủ định hoặc câu hỏi."}]}}, {"id": 21, "section": "Cloze Reading - Healthy Lifestyles (Cấu trúc động từ)", "question": "During physical activity, parents should (21) ______ teens to drink fluid regularly.", "options": [{"key": "A", "text": "make", "isCorrect": false}, {"key": "B", "text": "prevent", "isCorrect": false}, {"key": "C", "text": "encourage", "isCorrect": true}, {"key": "D", "text": "let", "isCorrect": false}], "explanation": {"translation": "Trong quá trình hoạt động thể chất, cha mẹ nên khuyến khích thanh thiếu niên uống nước thường xuyên.", "analysis": [{"text": "make", "badge": "make sb DO sth", "badgeClass": "bad", "desc": "= đi với động từ nguyên mẫu không 'to'"}, {"text": "prevent", "badge": "prevent sb FROM doing", "badgeClass": "bad", "desc": "= ngăn chặn ai làm gì, cần giới từ from + V-ing"}, {"text": "encourage", "badge": "encourage sb TO DO sth", "badgeClass": "good", "desc": "= khuyến khích ai làm việc gì (chuẩn cấu trúc to drink)"}, {"text": "let", "badge": "let sb DO sth", "badgeClass": "bad", "desc": "= để ai làm gì, đi với động từ nguyên mẫu không 'to'"}], "whyCorrect": {"rule": "Cấu trúc Encourage someone to do something", "detail": "Phía sau tân ngữ 'teens' là động từ nguyên mẫu có to: <span class='highlight-target'>to drink</span>. Chỉ có động từ <strong>encourage</strong> mới đi với cấu trúc: <strong>encourage + O + to-V</strong>."}, "whyWrong": [{"opt": "make", "reason": "cấu trúc 'make sb do sth' (không có to)."}, {"opt": "prevent", "reason": "cấu trúc 'prevent sb from doing sth' (ngăn cản uống nước là phi lý)."}, {"opt": "let", "reason": "cấu trúc 'let sb do sth' (không có to)."}]}}, {"id": 22, "section": "Cloze Reading - Healthy Lifestyles (Liên từ nối)", "question": "(22) ______, they should have them drink much water other fluid with no added sugar after the activity is completed.", "options": [{"key": "A", "text": "As a result", "isCorrect": false}, {"key": "B", "text": "Because of", "isCorrect": false}, {"key": "C", "text": "However", "isCorrect": false}, {"key": "D", "text": "Also", "isCorrect": true}], "explanation": {"translation": "Ngoài ra, họ cũng nên cho các em uống nhiều nước hoặc chất lỏng không thêm đường sau khi hoạt động kết thúc.", "analysis": [{"text": "As a result", "badge": "Kết quả là", "badgeClass": "bad", "desc": "= chỉ mối quan hệ nhân quả, không dùng khi bổ sung thêm lời khuyên"}, {"text": "Because of", "badge": "Bởi vì (+ Cụm danh từ)", "badgeClass": "bad", "desc": "= sau because of phải là cụm N/V-ing, không thể đứng đầu câu ngăn cách bằng dấu phẩy"}, {"text": "However", "badge": "Tuy nhiên", "badgeClass": "bad", "desc": "= chỉ sự tương phản đối lập, ở đây câu mang nghĩa bổ sung"}, {"text": "Also", "badge": "Ngoài ra, thêm vào đó", "badgeClass": "good", "desc": "= dùng để bổ sung thêm một lời khuyên kế tiếp cho cha mẹ"}], "whyCorrect": {"rule": "Liên từ bổ sung thông tin (Addition marker)", "detail": "Câu trước khuyên uống nước đều đặn trong lúc tập. Câu này bổ sung thêm lời khuyên sau khi tập xong: dùng liên từ <span class='highlight-target'>Also, ...</span> (= Besides / In addition)."}, "whyWrong": [{"opt": "As a result", "reason": "chỉ kết quả của hành động trước, ở đây là lời khuyên mới."}, {"opt": "Because of", "reason": "phải đi với cụm danh từ, không đứng độc lập trước dấu phẩy."}, {"opt": "However", "reason": "chỉ ý đối nghịch, trong khi hai câu đều khuyên uống nước lành mạnh."}]}}, {"id": 23, "section": "Cloze Reading - Healthy Lifestyles (Collocation)", "question": "Exercise (23) ______ an important part of keeping teens healthy.", "options": [{"key": "A", "text": "keeps", "isCorrect": false}, {"key": "B", "text": "plays", "isCorrect": true}, {"key": "C", "text": "stays", "isCorrect": false}, {"key": "D", "text": "takes", "isCorrect": false}], "explanation": {"translation": "Tập thể dục đóng một vai trò quan trọng trong việc giữ cho thanh thiếu niên khỏe mạnh.", "analysis": [{"text": "keeps", "badge": "keep part", "badgeClass": "bad", "desc": "= không có cụm này"}, {"text": "plays", "badge": "play an important part", "badgeClass": "good", "desc": "= đóng một vai trò quan trọng (collocation chuẩn)"}, {"text": "stays", "badge": "stay part", "badgeClass": "bad", "desc": "= không đi với part"}, {"text": "takes", "badge": "take part in", "badgeClass": "bad", "desc": "= take part in mang nghĩa tham gia, không mang nghĩa đóng vai trò"}], "whyCorrect": {"rule": "Collocation cố định: Play a part / Play a role", "detail": "Cụm thành ngữ học thuật cố định: <span class='highlight-target'>play an important part / role in (doing) something</span> mang nghĩa là đóng một vai trò quan trọng."}, "whyWrong": [{"opt": "keeps", "reason": "không kết hợp với 'an important part'."}, {"opt": "stays", "reason": "không kết hợp với 'an important part'."}, {"opt": "takes", "reason": "'take part in' là tham gia, không dùng diễn đạt tập thể dục đóng vai trò."}]}}, {"id": 24, "section": "Cloze Reading - Healthy Lifestyles (Từ vựng ngữ cảnh)", "question": "Parents should encourage (24) ______ by replacing sedentary activities with activities that require more movement in the family.", "options": [{"key": "A", "text": "healthy habits", "isCorrect": true}, {"key": "B", "text": "family values", "isCorrect": false}, {"key": "C", "text": "soft skills", "isCorrect": false}, {"key": "D", "text": "study habits", "isCorrect": false}], "explanation": {"translation": "Cha mẹ nên khuyến khích những thói quen lành mạnh bằng cách thay thế các hoạt động ít vận động bằng các hoạt động đòi hỏi vận động nhiều hơn trong gia đình.", "analysis": [{"text": "healthy habits", "badge": "thói quen lành mạnh", "badgeClass": "good", "desc": "= thay thế lối sống thụ động bằng việc vận động nhiều hơn chính là xây dựng thói quen tốt cho sức khỏe"}, {"text": "family values", "badge": "giá trị gia đình", "badgeClass": "bad", "desc": "= liên quan đến đạo đức, truyền thống gia đình"}, {"text": "soft skills", "badge": "kỹ năng mềm", "badgeClass": "bad", "desc": "= kỹ năng giao tiếp, làm việc nhóm..."}, {"text": "study habits", "badge": "thói quen học tập", "badgeClass": "bad", "desc": "= việc làm bài tập, đọc sách..."}], "whyCorrect": {"rule": "Ngữ cảnh chủ đề bài đọc (Theme Consistency)", "detail": "Toàn bộ bài đọc nói về việc vận động để có sức khỏe tốt. Cụm từ 'replacing sedentary activities with activities that require more movement' chính là hành động hình thành <span class='highlight-target'>healthy habits</span> (những thói quen lành mạnh)."}, "whyWrong": [{"opt": "family values", "reason": "nói về giá trị tinh thần/đạo đức gia đình."}, {"opt": "soft skills", "reason": "nói về kỹ năng xã hội trong công việc."}, {"opt": "study habits", "reason": "nói về thói quen học bài, không liên quan đến thể chất."}]}}, {"id": 25, "section": "Sentence Transformation (Chuyển đổi thì Quá khứ đơn sang Hiện tại hoàn thành)", "question": "Dr. Jane Goodall started to study wild chimpanzees when she was 26 years old.", "options": [{"key": "A", "text": "At the age of 26, Dr. Jane Goodall has began her research on wild chimpanzees.", "isCorrect": false}, {"key": "B", "text": "Dr. Jane Goodall has studied wild chimpanzees since she was 26.", "isCorrect": true}, {"key": "C", "text": "When Dr. Jane Goodall was 26, she stopped studying wild chimpanzees.", "isCorrect": false}, {"key": "D", "text": "Dr. Jane Goodall studied wild chimpanzees for many years after she turned 26.", "isCorrect": false}], "explanation": {"translation": "Tiến sĩ Jane Goodall đã nghiên cứu tinh tinh hoang dã kể từ khi bà 26 tuổi.", "analysis": [{"text": "Câu A", "badge": "❌ Sai ngữ pháp", "badgeClass": "bad", "desc": "= 'At the age of 26' chỉ mốc thời gian quá khứ không đi với HTHT, hơn nữa phân từ II của begin là 'begun', không phải 'began'"}, {"text": "Câu B", "badge": "✅ Chuẩn cấu trúc", "badgeClass": "good", "desc": "= S + started + V-ing when... = S + have/has + V3/ed + since..."}, {"text": "Câu C", "badge": "❌ Ngược nghĩa", "badgeClass": "bad", "desc": "= 'stopped studying' (ngừng nghiên cứu) trái ngược hoàn toàn với 'started to study'"}, {"text": "Câu D", "badge": "❌ Sai thông điệp", "badgeClass": "bad", "desc": "= dùng quá khứ đơn 'studied' ngụ ý hành động đã kết thúc"}], "whyCorrect": {"rule": "Công thức chuyển đổi: S + started/began + V-ing when... -> S + have/has + V3/ed + since...", "detail": "Bắt đầu làm gì từ năm 26 tuổi đồng nghĩa với việc đã và đang làm việc đó kể từ năm 26 tuổi: <span class='highlight-target'>Dr. Jane Goodall has studied wild chimpanzees since she was 26</span>."}, "whyWrong": [{"opt": "Câu A", "reason": "dùng sai thì và sai dạng quá khứ phân từ ('has began' -> phải là 'begun')."}, {"opt": "Câu C", "reason": "dùng 'stopped' (dừng lại) là hoàn toàn ngược nghĩa đề bài."}, {"opt": "Câu D", "reason": "chia thì quá khứ đơn không diễn đạt được hành vi kéo dài đến hiện tại."}]}}, {"id": 26, "section": "Sentence Transformation (Chuyển đổi In spite of sang Although)", "question": "In spite of the bad weather, we went on a school picnic.", "options": [{"key": "A", "text": "Because of the bad weather, we went on a school picnic.", "isCorrect": false}, {"key": "B", "text": "Although the weather was bad, we went on a school picnic.", "isCorrect": true}, {"key": "C", "text": "The weather was bad, so we went on a school picnic.", "isCorrect": false}, {"key": "D", "text": "The weather wasn’t bad, so we went on a school picnic.", "isCorrect": false}], "explanation": {"translation": "Mặc dù thời tiết xấu, chúng tôi vẫn đi dã ngoại cùng trường.", "analysis": [{"text": "Câu A", "badge": "❌ Sai quan hệ", "badgeClass": "bad", "desc": "= 'Because of' chỉ nguyên nhân, biến thời tiết xấu thành lý do để đi dã ngoại"}, {"text": "Câu B", "badge": "✅ Chuẩn cấu trúc", "badgeClass": "good", "desc": "= In spite of + N = Although + clause (mặc dù...)"}, {"text": "Câu C", "badge": "❌ Sai liên từ", "badgeClass": "bad", "desc": "= dùng liên từ kết quả 'so' (vì vậy) là sai logic"}, {"text": "Câu D", "badge": "❌ Thay đổi sự thật", "badgeClass": "bad", "desc": "= biến thời tiết thành 'không xấu' là sai với đề bài"}], "whyCorrect": {"rule": "Chuyển đổi In spite of + Noun Phrase -> Although + Clause", "detail": "Cấu trúc tương đương chỉ sự nhượng bộ / tương phản: <span class='highlight-target'>In spite of + Noun Phrase = Although + S + V</span>. Cụm danh từ 'the bad weather' được chuyển thành mệnh đề hoàn chỉnh <strong>Although the weather was bad</strong>."}, "whyWrong": [{"opt": "Câu A", "reason": "biến mệnh đề nhượng bộ thành nguyên nhân 'bởi vì'."}, {"opt": "Câu C", "reason": "thời tiết xấu nên đi dã ngoại là mối quan hệ nhân quả vô lý."}, {"opt": "Câu D", "reason": "tự ý thêm phủ định 'wasn't bad' làm sai lệch dữ kiện gốc."}]}}, {"id": 27, "section": "Sentence Building (Viết câu hoàn chỉnh)", "question": "It / inconsiderate / talk / loudly / your phone / a public space / like a library / a cinema.", "options": [{"key": "A", "text": "It is inconsiderate to talk loudly on your phone in a public space like a library or a cinema.", "isCorrect": true}, {"key": "B", "text": "Talk loudly on your phone in a public space like a library or a cinema is inconsiderate.", "isCorrect": false}, {"key": "C", "text": "In a public space like a library or a cinema, it is inconsiderate to talk loudly on your phone.", "isCorrect": false}, {"key": "D", "text": "It is inconsiderate to use your phone loudly in a public space like a library or a cinema.", "isCorrect": false}], "explanation": {"translation": "Thật là thiếu ý tứ khi nói chuyện to trên điện thoại ở một không gian công cộng như thư viện hay rạp chiếu phim.", "analysis": [{"text": "Câu A", "badge": "✅ Đúng cấu trúc & giới từ", "badgeClass": "good", "desc": "= It is + adj + to-V... on your phone... in a public space... like A or B"}, {"text": "Câu B", "badge": "❌ Động từ đứng đầu sai", "badgeClass": "bad", "desc": "= động từ nguyên mẫu 'Talk' không thể làm chủ ngữ (phải là Talking)"}, {"text": "Câu C", "badge": "❌ Đảo trật tự từ", "badgeClass": "bad", "desc": "= đảo trạng ngữ lên đầu, không bám sát trật tự từ gợi ý bắt đầu bằng 'It'"}, {"text": "Câu D", "badge": "❌ Thay đổi từ gợi ý", "badgeClass": "bad", "desc": "= tự ý thay 'talk' thành 'use'"}], "whyCorrect": {"rule": "Cấu trúc Chủ ngữ giả: It is + adjective + to-V", "detail": "1. Công thức chuẩn: <span class='highlight-target'>It is + adj + to-V</span> -> <em>It is inconsiderate to talk...</em><br>2. Giới từ nói chuyện qua điện thoại: <strong>on your phone</strong>.<br>3. Ở không gian công cộng: <strong>in a public space like a library or a cinema</strong>."}, "whyWrong": [{"opt": "Câu B", "reason": "chủ ngữ phải là danh động từ 'Talking', không dùng 'Talk'."}, {"opt": "Câu C", "reason": "làm thay đổi cấu trúc câu chủ ngữ giả bắt đầu bằng 'It' của đề bài."}, {"opt": "Câu D", "reason": "tự tiện thay đổi động từ 'talk' thành 'use'."}]}}, {"id": 28, "section": "Sentence Building (Cấu trúc Such... that)", "question": "It /hot/day/we/decide/stay indoors.", "options": [{"key": "A", "text": "It was a hot day because we decided to stay indoors.", "isCorrect": false}, {"key": "B", "text": "It was so a hot day that we decided to stay indoors.", "isCorrect": false}, {"key": "C", "text": "It was such a hot day that we decided staying indoors.", "isCorrect": false}, {"key": "D", "text": "It was such a hot day that we decided to stay indoors.", "isCorrect": true}], "explanation": {"translation": "Đó là một ngày nóng đến nỗi chúng tôi quyết định ở trong nhà.", "analysis": [{"text": "Câu A", "badge": "❌ Sai quan hệ logic", "badgeClass": "bad", "desc": "= 'Trời nóng bởi vì chúng tôi ở trong nhà' là hoàn toàn ngược nhân quả"}, {"text": "Câu B", "badge": "❌ Sai cấu trúc SO", "badgeClass": "bad", "desc": "= sau 'so' không đi với 'a hot day' (phải dùng such a hot day)"}, {"text": "Câu C", "badge": "❌ Sai sau decide", "badgeClass": "bad", "desc": "= sau decide phải dùng to-V, không dùng staying"}, {"text": "Câu D", "badge": "✅ Chuẩn ngữ pháp 100%", "badgeClass": "good", "desc": "= It was such a hot day that we decided to stay indoors"}], "whyCorrect": {"rule": "Cấu trúc Such + a/an + Adj + Noun + that + clause", "detail": "1. Đi với cụm danh từ số ít 'a hot day' ta dùng cấu trúc: <span class='highlight-target'>It was such a hot day that...</span>.<br>2. Động từ quyết định làm gì luôn đi với to-V: <strong>decide to do sth -> decided to stay indoors</strong>."}, "whyWrong": [{"opt": "Câu A", "reason": "dùng 'because' đảo ngược quan hệ nguyên nhân kết quả một cách vô lý."}, {"opt": "Câu B", "reason": "công thức với 'so' phải là 'so hot a day' chứ không dùng 'so a hot day'."}, {"opt": "Câu C", "reason": "dùng 'decided staying' là sai ngữ pháp, phải là 'decided to stay'."}]}}, {"id": 29, "section": "Sign & Notice (Biển báo cấm)", "question": "What does this sign mean?<br><div class='sign-art-container'><div class='custom-sign-board' style='background:#FFF;border:3px solid #D63031;border-radius:18px;padding:14px 20px;text-align:center;box-shadow:0 6px 15px rgba(0,0,0,0.1);max-width:260px;margin:10px auto;'><div style='font-size:36px;margin-bottom:4px;'>🚫🍔🥤</div><div style='background:#D63031;color:#FFF;font-weight:900;padding:4px 8px;border-radius:6px;font-size:13px;letter-spacing:0.5px;'>NO FOOD OR DRINK<br>IN THIS AREA</div></div></div>", "options": [{"key": "A", "text": "You must not take food or drinks out of this room.", "isCorrect": false}, {"key": "B", "text": "You cannot have snacks in this room.", "isCorrect": true}, {"key": "C", "text": "You can buy cheaper food here.", "isCorrect": false}, {"key": "D", "text": "You must eat in this room.", "isCorrect": false}], "explanation": {"translation": "Biển báo này có ý nghĩa gì?<br>'KHÔNG ĐƯỢC MANG HOẶC DÙNG ĐỒ ĂN THỨC UỐNG TRONG KHU VỰC NÀY.'", "analysis": [{"text": "Câu A", "badge": "❌ Không được mang ra ngoài", "badgeClass": "bad", "desc": "= biển cấm ăn uống TẠI ĐÂY chứ không nói về việc mang ra ngoài (out of)"}, {"text": "Câu B", "badge": "✅ Đúng nghĩa hoàn toàn", "badgeClass": "good", "desc": "= 'cannot have snacks' nghĩa là không được ăn uống/ăn vặt trong phòng này"}, {"text": "Câu C", "badge": "❌ Mua đồ ăn giá rẻ", "badgeClass": "bad", "desc": "= hoàn toàn không có thông tin mua bán ở đây"}, {"text": "Câu D", "badge": "❌ Bắt buộc phải ăn", "badgeClass": "bad", "desc": "= trái ngược 180 độ với biển cấm"}], "whyCorrect": {"rule": "Diễn giải ý nghĩa biển cấm (Sign Interpretation)", "detail": "Biển báo ghi rõ: <span class='highlight-target'>'NO FOOD OR DRINK IN THIS AREA'</span> có nghĩa là cấm mọi hành vi ăn uống trong khu vực này. Diễn đạt tương đương là <strong>You cannot have snacks in this room</strong> (Bạn không thể ăn uống đồ ăn vặt trong phòng này)."}, "whyWrong": [{"opt": "Câu A", "reason": "'take out of' nghĩa là mang ra khỏi phòng, không đúng với lệnh cấm tại chỗ."}, {"opt": "Câu C", "reason": "biển báo cấm ăn uống, không phải quảng cáo giảm giá thức ăn."}, {"opt": "Câu D", "reason": "'must eat' là bắt buộc phải ăn, trái ngược hoàn toàn biển cấm."}]}}, {"id": 30, "section": "Sign & Notice (Thông báo dành riêng cho hội viên)", "question": "What does the notice say?<br><div class='sign-art-container'><div class='custom-sign-board' style='background:#F8F9FA;border:2.5px solid #0984E3;border-radius:18px;padding:16px 24px;text-align:center;box-shadow:0 6px 15px rgba(0,0,0,0.08);max-width:280px;margin:10px auto;'><div style='font-size:24px;margin-bottom:6px;'>🏷️ VIP ONLY</div><div style='color:#0984E3;font-weight:900;font-size:14.5px;'>Access is available for<br>members only</div></div></div>", "options": [{"key": "A", "text": "This area is open to public.", "isCorrect": false}, {"key": "B", "text": "If you are a member, you can enter.", "isCorrect": true}, {"key": "C", "text": "Anyone can be a member.", "isCorrect": false}, {"key": "D", "text": "Non-members must pay a fee to enter.", "isCorrect": false}], "explanation": {"translation": "Thông báo này nói điều gì?<br>'Lối vào chỉ dành riêng cho hội viên/thành viên.'", "analysis": [{"text": "Câu A", "badge": "❌ Mở cửa cho công chúng", "badgeClass": "bad", "desc": "= trái ngược với 'members only' (chỉ dành riêng cho hội viên)"}, {"text": "Câu B", "badge": "✅ Đúng nghĩa hoàn hảo", "badgeClass": "good", "desc": "= Nếu bạn là thành viên, bạn có thể đi vào"}, {"text": "Câu C", "badge": "❌ Bất kỳ ai cũng có thể là thành viên", "badgeClass": "bad", "desc": "= thông báo không đề cập đến điều kiện kết nạp thành viên"}, {"text": "Câu D", "badge": "❌ Không phải thành viên phải trả phí", "badgeClass": "bad", "desc": "= thông báo không hề đề cập đến việc thu phí để được vào"}], "whyCorrect": {"rule": "Diễn đạt tương đương điều kiện (Paraphrasing)", "detail": "Cụm từ <span class='highlight-target'>'Access is available for members only'</span> (Quyền truy cập chỉ dành cho thành viên) đồng nghĩa trực tiếp với câu điều kiện: <strong>If you are a member, you can enter</strong> (Nếu bạn là thành viên, bạn mới có thể vào)."}, "whyWrong": [{"opt": "Câu A", "reason": "'open to public' là mở cửa tự do cho tất cả mọi người, trái với 'members only'."}, {"opt": "Câu C", "reason": "thông báo không nói ai cũng được làm thành viên."}, {"opt": "Câu D", "reason": "thông báo không nói người ngoài trả phí thì được vào."}]}}, {"id": 31, "section": "Reading Comprehension (Tiêu đề phù hợp nhất)", "question": "What is the best title of the reading text?", "options": [{"key": "A", "text": "The history of Gia Dinh", "isCorrect": false}, {"key": "B", "text": "Ho Chi Minh City - The largest city in Vietnam", "isCorrect": true}, {"key": "C", "text": "Famous places for tourists in Ho Chi Minh City", "isCorrect": false}, {"key": "D", "text": "Tropical climate in Ho Chi Minh City", "isCorrect": false}], "explanation": {"translation": "Tiêu đề phù hợp nhất cho đoạn văn đọc hiểu là gì?", "analysis": [{"text": "The history of Gia Dinh", "badge": "❌ Ý quá hẹp", "badgeClass": "bad", "desc": "= lịch sử Gia Định chỉ được nhắc tới ngắn gọn trong 1 câu ở đoạn 2"}, {"text": "Ho Chi Minh City - The largest city in Vietnam", "badge": "✅ Bao quát toàn bài", "badgeClass": "good", "desc": "= thâu tóm trọn vẹn mọi khía cạnh: vị trí, diện tích, khí hậu, lịch sử, du lịch và dân số"}, {"text": "Famous places for tourists", "badge": "❌ Ý quá hẹp", "badgeClass": "bad", "desc": "= địa điểm du lịch chỉ là 1 câu liệt kê trong đoạn 2"}, {"text": "Tropical climate", "badge": "❌ Ý quá hẹp", "badgeClass": "bad", "desc": "= khí hậu nhiệt đới chỉ được miêu tả ở đoạn 1"}], "whyCorrect": {"rule": "Xác định Tiêu đề chính của văn bản (Main Idea / Best Title)", "detail": "Câu mở đầu nêu chủ đề tổng thể: <em>'Ho Chi Minh City is the largest city in Vietnam...'</em>. Các đoạn sau lần lượt giới thiệu về diện tích, khí hậu, nguồn gốc tên gọi, thắng cảnh và tình hình dân số. Tiêu đề bao quát và hoàn chỉnh nhất là <span class='highlight-target'>Ho Chi Minh City - The largest city in Vietnam</span>."}, "whyWrong": [{"opt": "The history of Gia Dinh", "reason": "chỉ là một chi tiết nhỏ về lịch sử tên gọi trước năm 1862."}, {"opt": "Famous places for tourists", "reason": "chỉ là một ý phụ trong đoạn 2."}, {"opt": "Tropical climate", "reason": "chỉ là một nội dung nằm ở đoạn 1."}]}}, {"id": 32, "section": "Reading Comprehension (Từ trái nghĩa - Opposite)", "question": "The word “distinct” in paragraph 1 is OPPOSITE in meaning to ______.", "options": [{"key": "A", "text": "different", "isCorrect": false}, {"key": "B", "text": "similar", "isCorrect": true}, {"key": "C", "text": "majestic", "isCorrect": false}, {"key": "D", "text": "annual", "isCorrect": false}], "explanation": {"translation": "Từ 'distinct' (khác biệt, rõ rệt) trong đoạn 1 TRÁI NGHĨA với từ nào?", "analysis": [{"text": "different", "badge": "từ đồng nghĩa (Synonym)", "badgeClass": "bad", "desc": "= khác biệt (đây là từ đồng nghĩa, đề bài hỏi từ TRÁI NGHĨA)"}, {"text": "similar", "badge": "từ trái nghĩa (Antonym)", "badgeClass": "good", "desc": "= tương đồng, giống nhau (trái nghĩa hoàn toàn với distinct)"}, {"text": "majestic", "badge": "hùng vĩ, tráng lệ", "badgeClass": "bad", "desc": "= không liên quan về mặt ngữ nghĩa"}, {"text": "annual", "badge": "thường niên, hàng năm", "badgeClass": "bad", "desc": "= chỉ tần suất theo năm, không liên quan"}], "whyCorrect": {"rule": "Cặp từ trái nghĩa (Antonyms)", "detail": "Trong ngữ cảnh 'two distinct seasons' (hai mùa tách biệt, khác nhau rõ rệt), từ 'distinct' mang nghĩa là rõ ràng, khác biệt (= different). Từ trái nghĩa hoàn toàn với nó là <span class='highlight-target'>similar</span> (tương tự, giống nhau)."}, "whyWrong": [{"opt": "different", "reason": "là từ đồng nghĩa (synonym), nếu chọn là mắc bẫy đề bài."}, {"opt": "majestic", "reason": "nghĩa là tráng lệ, không phải từ đối lập."}, {"opt": "annual", "reason": "nghĩa là xảy ra hàng năm, không liên quan."}]}}, {"id": 33, "section": "Reading Comprehension (Chi tiết bài đọc)", "question": "Ho Chi Minh City is coldest ______.", "options": [{"key": "A", "text": "in December", "isCorrect": true}, {"key": "B", "text": "around late April’s noon", "isCorrect": false}, {"key": "C", "text": "all year round", "isCorrect": false}, {"key": "D", "text": "in the early mornings", "isCorrect": false}], "explanation": {"translation": "Thành phố Hồ Chí Minh lạnh nhất vào thời điểm nào? - Vào tháng 12.", "analysis": [{"text": "in December", "badge": "✅ Đúng theo dữ kiện bài", "badgeClass": "good", "desc": "= bài ghi rõ nhiệt độ thấp nhất có thể xuống dưới 16°C vào cuối tháng 12 (in late December)"}, {"text": "around late April’s noon", "badge": "❌ Đây là lúc nóng nhất", "badgeClass": "bad", "desc": "= lúc này nóng nhất, nhiệt độ lên tới 39°C"}, {"text": "all year round", "badge": "❌ Quanh năm", "badgeClass": "bad", "desc": "= nhiệt độ trung bình là 28°C mang tính ấm nóng quanh năm, không phải lạnh nhất"}, {"text": "in the early mornings", "badge": "❌ Chưa đủ thông tin", "badgeClass": "bad", "desc": "= sáng sớm chỉ là thời điểm trong ngày, còn thời điểm lạnh nhất trong năm rơi vào tháng 12"}], "whyCorrect": {"rule": "Dẫn chứng trong bài đọc (Direct Fact)", "detail": "Đoạn 1 nêu rõ: <em>'...the lowest one may fall below 16°C in the early mornings in <span class='highlight-target'>late December</span>'</em>. Vì vậy, tháng lạnh nhất trong năm ở TP.HCM chính là <strong>tháng 12 (in December)</strong>."}, "whyWrong": [{"opt": "around late April’s noon", "reason": "đây là thời điểm nóng đỉnh điểm (39°C)."}, {"opt": "all year round", "reason": "không phải quanh năm đều lạnh."}, {"opt": "in the early mornings", "reason": "sáng sớm diễn ra quanh năm nhưng chỉ sáng sớm tháng 12 mới đạt mức lạnh nhất dưới 16°C."}]}}, {"id": 34, "section": "Reading Comprehension (Quy chiếu đại từ - Pronoun Reference)", "question": "The word “it” in paragraph 2 refers to ______.", "options": [{"key": "A", "text": "Gia Dinh", "isCorrect": true}, {"key": "B", "text": "the French", "isCorrect": false}, {"key": "C", "text": "Ho Chi Minh City", "isCorrect": false}, {"key": "D", "text": "Saigon", "isCorrect": false}], "explanation": {"translation": "Từ 'it' trong đoạn 2 quy chiếu đến danh từ nào?", "analysis": [{"text": "Gia Dinh", "badge": "✅ Chuẩn ngữ cảnh lịch sử", "badgeClass": "good", "desc": "= câu trước: 'the city was named Gia Dinh', câu sau: người Pháp đến và đổi NÓ thành Sài Gòn"}, {"text": "the French", "badge": "người Pháp", "badgeClass": "bad", "desc": "= là chủ ngữ hành động 'the French came', không thể tự đổi chính mình thành Sài Gòn"}, {"text": "Ho Chi Minh City", "badge": "tên hiện tại", "badgeClass": "bad", "desc": "= lúc năm 1862 thành phố có tên là Gia Định"}, {"text": "Saigon", "badge": "tên mới sau khi đổi", "badgeClass": "bad", "desc": "= đổi 'it' thành 'Saigon' nên 'it' không thể là Saigon được"}], "whyCorrect": {"rule": "Quy tắc ngữ pháp tham chiếu đại từ (Pronoun Reference)", "detail": "Hãy đọc liền mạch hai câu văn: <em>'Long time ago, the city was named <span class='highlight-target'>Gia Dinh</span>. In 1862, the French came and turned <span class='highlight-target'>it</span> into “Saigon”...'</em>. Người Pháp đến và biến vùng đất Gia Định ('it') thành tên gọi 'Sài Gòn'. Do đó 'it' chính là <strong>Gia Dinh</strong>."}, "whyWrong": [{"opt": "the French", "reason": "là chủ ngữ số nhiều thực hiện hành động 'turned'."}, {"opt": "Ho Chi Minh City", "reason": "tên gọi này mãi sau này mới có."}, {"opt": "Saigon", "reason": "được chuyển đổi thành 'Saigon', nên 'it' là đối tượng trước khi đổi."}]}}, {"id": 35, "section": "Reading Comprehension (Từ đồng nghĩa - Synonym)", "question": "The word “destinations” in paragraph 2 is CLOSEST in meaning to ______.", "options": [{"key": "A", "text": "places", "isCorrect": false}, {"key": "B", "text": "streets", "isCorrect": false}, {"key": "C", "text": "attractions", "isCorrect": true}, {"key": "D", "text": "rooms", "isCorrect": false}], "explanation": {"translation": "Từ 'destinations' (điểm đến du lịch) trong đoạn 2 GẦN NGHĨA NHẤT với từ nào?", "analysis": [{"text": "places", "badge": "n - nơi chốn chung chung", "badgeClass": "bad", "desc": "= nơi chốn quá rộng, không mang tính điểm tham quan đặc trưng"}, {"text": "streets", "badge": "n - đường phố", "badgeClass": "bad", "desc": "= các con đường, sai nghĩa"}, {"text": "attractions", "badge": "n - điểm tham quan du lịch", "badgeClass": "good", "desc": "= tourist attractions đồng nghĩa trực tiếp với tourist destinations (điểm đến hấp dẫn khách du lịch)"}, {"text": "rooms", "badge": "n - các căn phòng", "badgeClass": "bad", "desc": "= các phòng trong nhà, sai nghĩa hoàn toàn"}], "whyCorrect": {"rule": "Cặp từ đồng nghĩa chủ đề Du lịch (Tourism Collocations)", "detail": "Cụm danh từ <span class='highlight-target'>tourist destinations</span> đồng nghĩa 100% với cụm <span class='highlight-target'>tourist attractions</span> dùng để chỉ các danh lam thắng cảnh, di tích lịch sử thu hút khách tham quan (như Dinh Độc Lập, Nhà thờ Đức Bà...)."}, "whyWrong": [{"opt": "places", "reason": "quá chung chung, không chuẩn bằng chuyên từ 'attractions'."}, {"opt": "streets", "reason": "chỉ là đường xá giao thông."}, {"opt": "rooms", "reason": "căn phòng, sai lệch nghĩa hoàn toàn."}]}}, {"id": 36, "section": "Reading Comprehension (Xác định thông tin SAI)", "question": "Which of the following is NOT true about Ho Chi Minh City?", "options": [{"key": "A", "text": "Ho Chi Minh City is the most populous city in Vietnam.", "isCorrect": false}, {"key": "B", "text": "Ho Chi Minh City has a tropical climate with the average temperature of 28°C.", "isCorrect": false}, {"key": "C", "text": "There are many famous buildings built by the French in the city.", "isCorrect": false}, {"key": "D", "text": "This city does not need to develop public services because of the population.", "isCorrect": true}], "explanation": {"translation": "Điều nào sau đây KHÔNG ĐÚNG về Thành phố Hồ Chí Minh?", "analysis": [{"text": "Câu A", "badge": "Thông tin Đúng", "badgeClass": "info", "desc": "= thành phố đông dân nhất VN (hơn 8 triệu người, highest population-concentrated)"}, {"text": "Câu B", "badge": "Thông tin Đúng", "badgeClass": "info", "desc": "= khí hậu nhiệt đới với nhiệt độ trung bình 28°C (đoạn 1)"}, {"text": "Câu C", "badge": "Thông tin Đúng", "badgeClass": "info", "desc": "= nhiều công trình nổi tiếng do người Pháp xây dựng (historic French buildings)"}, {"text": "Câu D", "badge": "❌ THÔNG TIN SAI", "badgeClass": "good", "desc": "= bài khẳng định thành phố CẦN TĂNG CƯỜNG DỊCH VỤ CÔNG, câu D lại nói 'does not need' (không cần)"}], "whyCorrect": {"rule": "Đối chiếu dữ liệu văn bản (Fact Checking)", "detail": "Câu cuối bài khẳng định: <em>'Therefore, it is in need of vast increase in public services.'</em> (Do đó, thành phố rất cần sự gia tăng lớn về dịch vụ công ích). Nhận định D bảo thành phố <strong>'không cần phát triển dịch vụ công'</strong> là hoàn toàn trái ngược với bài đọc."}, "whyWrong": [{"opt": "Câu A", "reason": "thông tin đúng có trong đoạn 2."}, {"opt": "Câu B", "reason": "thông tin đúng có trong đoạn 1."}, {"opt": "Câu C", "reason": "thông tin đúng có trong đoạn 2."}]}}, {"id": 37, "section": "Reading Cloze - Winter Driving (Điền cụm từ)", "question": "Fog can be waiting to meet you over the top of a hill. Ice might be (37) ______, waiting to send you off the road.", "options": [{"key": "A", "text": "driving more quickly than you think", "isCorrect": false}, {"key": "B", "text": "hiding beneath the melting snow", "isCorrect": true}, {"key": "C", "text": "Imagine you are driving with a full cup of hot coffee on the seat next to you", "isCorrect": false}, {"key": "D", "text": "Rule Number One for driving on icy roads is to drive smoothly", "isCorrect": false}], "explanation": {"translation": "Băng giá có thể đang ẩn nấp bên dưới lớp tuyết tan, chực chờ làm xe bạn văng khỏi mặt đường.", "analysis": [{"text": "driving more quickly than you think", "badge": "❌ Băng không thể tự lái xe", "badgeClass": "bad", "desc": "= chủ ngữ là 'Ice' (băng tuyết) không thể thực hiện hành động lái xe"}, {"text": "hiding beneath the melting snow", "badge": "✅ Hoàn hảo ngữ nghĩa & ngữ pháp", "badgeClass": "good", "desc": "= Ice might be hiding... (Băng có thể đang ẩn nấp dưới lớp tuyết)"}, {"text": "Imagine you are driving...", "badge": "❌ Câu mệnh lệnh", "badgeClass": "bad", "desc": "= không thể ghép sau 'might be'"}, {"text": "Rule Number One...", "badge": "❌ Mệnh đề độc lập", "badgeClass": "bad", "desc": "= không phù hợp ngữ pháp sau vị ngữ 'might be'"}], "whyCorrect": {"rule": "Cấu trúc Might be + V-ing & Tính liên kết logic", "detail": "Chủ ngữ là 'Ice' (băng tuyết). Sau trợ động từ 'might be' cần một hiện tại phân từ miêu tả trạng thái nguy hiểm của băng tuyết mùa đông: <span class='highlight-target'>Ice might be hiding beneath the melting snow</span> (Băng đang ẩn nấp dưới lớp tuyết tan)."}, "whyWrong": [{"opt": "driving more quickly...", "reason": "băng không thể tự lái xe."}, {"opt": "Imagine...", "reason": "là câu ví von chuyển ý ở đoạn sau."}, {"opt": "Rule Number One...", "reason": "là tiêu đề của quy tắc lái xe số 1."}]}}, {"id": 38, "section": "Reading Cloze - Winter Driving (Điền quy tắc)", "question": "The car coming towards you may suddenly slide across the road. (38) ______. Uneven movements can make a car suddenly very difficult to control. So, every time you either turn the wheel, touch the breaks or increase your speed, you must be as gentle and slow as possible.", "options": [{"key": "A", "text": "driving more quickly than you think", "isCorrect": false}, {"key": "B", "text": "hiding beneath the melting snow", "isCorrect": false}, {"key": "C", "text": "Imagine you are driving with a full cup of hot coffee on the seat next to you", "isCorrect": false}, {"key": "D", "text": "Rule Number One for driving on icy roads is to drive smoothly", "isCorrect": true}], "explanation": {"translation": "Quy tắc số một để lái xe trên đường băng giá là phải lái thật êm ái.", "analysis": [{"text": "driving more quickly...", "badge": "❌ Không phải câu hoàn chỉnh", "badgeClass": "bad", "desc": "= chỉ là cụm phân từ, không làm câu độc lập"}, {"text": "hiding beneath the melting snow", "badge": "❌ Đã dùng ở câu 37", "badgeClass": "bad", "desc": "= phương án này dành cho vị trí (37)"}, {"text": "Imagine you are driving...", "badge": "❌ Chưa đúng vị trí ví dụ", "badgeClass": "bad", "desc": "= câu này là minh họa cho việc lái chậm ở câu 39"}, {"text": "Rule Number One...", "badge": "✅ Mở đầu quy tắc 1", "badgeClass": "good", "desc": "= đối ứng hoàn hảo với 'Rule Number Two' ở đoạn văn tiếp theo"}], "whyCorrect": {"rule": "Tính liên kết đoạn văn đối ứng (Structural Parallelism)", "detail": "Ở đoạn tiếp theo, tác giả bắt đầu bằng: <em>'Rule Number Two is to pay attention...'</em>. Do đó ở vị trí (38) bắt buộc phải là câu mở đầu quy tắc số 1: <span class='highlight-target'>Rule Number One for driving on icy roads is to drive smoothly</span> (êm ái, nhẹ nhàng, từ tốn)."}, "whyWrong": [{"opt": "driving more quickly...", "reason": "không phải là một câu độc lập."}, {"opt": "hiding beneath...", "reason": "đã điền cho câu 37."}, {"opt": "Imagine...", "reason": "phải đứng trước câu nói về việc không làm đổ nước ở câu 39."}]}}, {"id": 39, "section": "Reading Cloze - Winter Driving (Điền câu ví dụ)", "question": "So, every time you either turn the wheel, touch the breaks or increase your speed, you must be as gentle and slow as possible. (39) ______. Drive so that you wouldn’t spill it.", "options": [{"key": "A", "text": "driving more quickly than you think", "isCorrect": false}, {"key": "B", "text": "hiding beneath the melting snow", "isCorrect": false}, {"key": "C", "text": "Imagine you are driving with a full cup of hot coffee on the seat next to you", "isCorrect": true}, {"key": "D", "text": "Rule Number One for driving on icy roads is to drive smoothly", "isCorrect": false}], "explanation": {"translation": "Hãy tưởng tượng bạn đang lái xe với một tách cà phê nóng đầy ắp đặt trên chiếc ghế bên cạnh bạn. Hãy lái xe sao cho bạn không làm sánh đổ nó ra ngoài.", "analysis": [{"text": "driving more quickly...", "badge": "❌ Cụm phân từ", "badgeClass": "bad", "desc": "= không liên quan đến đại từ 'it' và hành động 'spill' ở câu sau"}, {"text": "hiding beneath the melting snow", "badge": "❌ Đã dùng ở câu 37", "badgeClass": "bad", "desc": "= không ghép được với câu sau"}, {"text": "Imagine you are driving with a full cup of hot coffee...", "badge": "✅ Khớp đại từ 'it' & 'spill'", "badgeClass": "good", "desc": "= 'spill it' (làm đổ nó) quy chiếu trực tiếp đến 'a full cup of hot coffee'"}, {"text": "Rule Number One...", "badge": "❌ Đã dùng ở câu 38", "badgeClass": "bad", "desc": "= vị trí này không nêu lại quy tắc"}], "whyCorrect": {"rule": "Quy tắc tham chiếu từ vựng 'spill it' (Lexical & Pronoun Clue)", "detail": "Câu ngay phía sau viết: <em>'Drive so that you wouldn't <span class='highlight-target'>spill it</span>'</em> (Hãy lái xe sao cho bạn không làm sánh đổ NÓ ra ngoài). Đại từ tân ngữ 'it' và hành động 'spill' (làm tràn, làm đổ nước) chỉ có thể liên kết với hình ảnh <strong>a full cup of hot coffee</strong>."}, "whyWrong": [{"opt": "driving more quickly...", "reason": "không có đồ vật gì để làm đổ (spill)."}, {"opt": "hiding beneath...", "reason": "đã dùng ở câu 37."}, {"opt": "Rule Number One...", "reason": "đã dùng ở câu 38."}]}}, {"id": 40, "section": "Reading Cloze - Winter Driving (Điền cụm hoàn thành câu)", "question": "Rule Number Two is to pay attention to what might happen. The more ice there is, the further down the road you have to look. Test how long it takes to stop by gently braking. Remember that you may be (40) ______.<br>In general, allow double your normal stopping distance when the road is wet.", "options": [{"key": "A", "text": "driving more quickly than you think", "isCorrect": true}, {"key": "B", "text": "hiding beneath the melting snow", "isCorrect": false}, {"key": "C", "text": "Imagine you are driving with a full cup of hot coffee on the seat next to you", "isCorrect": false}, {"key": "D", "text": "Rule Number One for driving on icy roads is to drive smoothly", "isCorrect": false}], "explanation": {"translation": "Hãy nhớ rằng bạn có thể đang lái xe nhanh hơn bạn nghĩ đấy.", "analysis": [{"text": "driving more quickly than you think", "badge": "✅ Chuẩn cấu trúc & ý nghĩa", "badgeClass": "good", "desc": "= may be driving... (có thể đang lái nhanh hơn mình tưởng nên cần gấp đôi khoảng cách dừng xe)"}, {"text": "hiding beneath the melting snow", "badge": "❌ Sai chủ ngữ người 'you'", "badgeClass": "bad", "desc": "= người lái xe không phải đang ẩn nấp dưới tuyết"}, {"text": "Imagine...", "badge": "❌ Sai ngữ pháp sau may be", "badgeClass": "bad", "desc": "= không thể đặt câu mệnh lệnh sau 'may be'"}, {"text": "Rule Number One...", "badge": "❌ Không ghép được với may be", "badgeClass": "bad", "desc": "= không tạo thành câu có nghĩa"}], "whyCorrect": {"rule": "Cấu trúc May be + V-ing & Lô-gich khoảng cách dừng xe", "detail": "Câu trước khuyên người lái kiểm tra độ trơn trượt của phanh. Câu sau giải thích: vì đường trơn nên có thể bạn đang phóng xe nhanh hơn bạn tưởng (<span class='highlight-target'>driving more quickly than you think</span>), do đó cần tăng gấp đôi khoảng cách dừng xe bình thường."}, "whyWrong": [{"opt": "hiding beneath...", "reason": "chủ ngữ là 'you' (bạn) không thể ẩn nấp dưới tuyết."}, {"opt": "Imagine...", "reason": "sai ngữ pháp sau 'may be'."}, {"opt": "Rule Number One...", "reason": "đoạn này đang bàn về Quy tắc số 2."}]}}];
+
+    const passagesMapping = {
+      1: {
+        title: "PHẦN 1: PRONUNCIATION (PHÁT ÂM)",
+        desc: "Mark the letter A, B, C, or D on your answer sheet to indicate the word whose underlined part differs from the other three in pronunciation."
+      },
+      3: {
+        title: "PHẦN 2: PRIMARY STRESS (TRỌNG ÂM CHÍNH)",
+        desc: "Mark the letter A, B, C, or D on your answer sheet to indicate the word that differs from the other three in the position of primary stress."
+      },
+      5: {
+        title: "PHẦN 3: MULTIPLE CHOICE (CHỌN ĐÁP ÁN ĐÚNG NHẤT)",
+        desc: "Mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the following questions."
+      },
+      13: {
+        title: "PHẦN 4: RECRUITMENT ADVERTISEMENT (ĐỌC ĐIỀN TỪ QUẢNG CÁO)",
+        desc: "Read the following recruitment advertisement and mark the letter A, B, C, or D on your answer sheet to indicate the correct option that best fits each of the numbered blanks from 13 to 16.",
+        passageHtml: `
+          <div class="passage-card">
+            <div class="passage-title">📢 THE IMPORTANCE OF ENGLISH</div>
+            <ol style="padding-left: 20px; line-height: 1.8;">
+              <li>English is spoken by millions of people <strong>(13)______</strong> the world.</li>
+              <li>It is often referred to as <strong>(14)______</strong> global language.</li>
+              <li><strong>(15)______</strong> newspapers in English can help you stay informed.</li>
+              <li>Learning English can open doors to <strong>(16)______</strong> new opportunities.</li>
+            </ol>
+          </div>
+        `
+      },
+      17: {
+        title: "PHẦN 5: TEXT ARRANGEMENT & CONCLUSION (SẮP XẾP & KẾT ĐOẠN)",
+        desc: "Mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the following questions from 17 to 18."
+      },
+      19: {
+        title: "PHẦN 6: GUIDED CLOZE TEST (ĐỌC ĐIỀN ĐOẠN VĂN LỐI SỐNG LÀNH MẠNH)",
+        desc: "Mark the letter A, B, C, or D on your answer sheet to indicate the correct option that best fits each of the numbered blanks from 19 to 24.",
+        passageHtml: `
+          <div class="passage-card">
+            <div class="passage-title">📖 Healthy Lifestyles For Teens</div>
+            <p>Lifestyles that are learned in childhood are more likely to stay with the child into adulthood. The best way to promote healthy lifestyles is for the whole family to become involved.</p>
+            <br>
+            <p>A daily exercise program is a fun way to share <strong>(19)______</strong> activity with family members while establishing good habits. Parents can help teens choose and plan appropriate activities. Teenagers need at least 60 minutes of physical activities on most days to maintain good health and weight. <strong>(20)______</strong> vigorous activities for whole family are brisk walking, running, or cycling. Even low- to-moderates ones like pleasure walking, climbing stairs or dancing can be helpful. During physical activity, parents should <strong>(21)______</strong> teens to drink fluid regularly. <strong>(22)______</strong>, they should have them drink much water other fluid with no added sugar after the activity is completed.</p>
+            <br>
+            <p>Exercise <strong>(23)______</strong> an important part of keeping teens healthy. Parents should encourage <strong>(24)______</strong> by replacing sedentary activities with activities that require more movement in the family.</p>
+          </div>
+        `
+      },
+      25: {
+        title: "PHẦN 7: SENTENCE TRANSFORMATION (VIẾT LẠI CÂU ĐỒNG NGHĨA)",
+        desc: "Mark the letter A, B, C, or D on your answer sheet to indicate the sentence that is closest in meaning to each of the following questions."
+      },
+      27: {
+        title: "PHẦN 8: SENTENCE BUILDING (VIẾT CÂU TỪ TỪ GỢI Ý)",
+        desc: "Mark the letter A, B, C, or D on your answer sheet to indicate the sentence that is made from the given cues in each of the following questions."
+      },
+      29: {
+        title: "PHẦN 9: SIGNS AND NOTICES (BIỂN BÁO & THÔNG BÁO THỰC TẾ)",
+        desc: "Read the following sign or notice and mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the following questions."
+      },
+      31: {
+        title: "PHẦN 10: READING COMPREHENSION (ĐỌC HIỂU TP. HỒ CHÍ MINH)",
+        desc: "Read the following passage and mark the letter A, B, C, or D on your answer sheet to indicate the correct answer to each of the following questions from 31 to 36.",
+        passageHtml: `
+          <div class="passage-card">
+            <div class="passage-title">📖 Ho Chi Minh City - The Largest City in Vietnam</div>
+            <p>Ho Chi Minh City is the largest city in Vietnam, and it is located in the southeastern region of Vietnam, 1760 km to the south of Hanoi. The city covers an area of 2095 km². Ho Chi Minh City has a tropical climate with two <strong>distinct</strong> seasons each year: the rainy season (from May to November) and the dry season (from December to April). The average temperature is 28°C. While the highest temperature sometimes reaches 39°C around noon in late April, the lowest one may fall below 16°C in the early mornings in late December.</p>
+            <br>
+            <p>Long time ago, the city was named Gia Dinh. In 1862, the French came and turned <strong>it</strong> into “Saigon”, which has always been popular up to now. Wide highways together with historic French buildings are among the unique features of the city. Some well-known tourist <strong>destinations</strong> are Reunification Hall, City Hall, Municipal Theatre, Revolutionary Museum and Saigon Notre-Dame Cathedral. With a population of more than 8 million people now, Ho Chi Minh City is the highest population-concentrated in the country. Therefore, it is in need of vast increase in public services.</p>
+          </div>
+        `
+      },
+      37: {
+        title: "PHẦN 11: TEXT RESTORATION (ĐIỀN CÂU VÀO ĐOẠN VĂN LÁI XE MÙA ĐÔNG)",
+        desc: "Four phrases/sentences have been removed from the text below. For each question, mark the letter A, B, C, or D on your answer sheet to indicate the correct option that best fits each of the numbered blanks from 37 to 40.",
+        passageHtml: `
+          <div class="passage-card">
+            <div class="passage-title">🚗 Winter Driving</div>
+            <p>Winter is dangerous because it’s so difficult to know what is going to happen and accidents take place so easily. Fog can be waiting to meet you over the top of a hill. Ice might be <strong>(37)______</strong>, waiting to send you off the road. The car coming towards you may suddenly slide across the road. <strong>(38)______</strong>. Uneven movements can make a car suddenly very difficult to control. So, every time you either turn the wheel, touch the breaks or increase your speed, you must be as gentle and slow as possible. <strong>(39)______</strong>. Drive so that you wouldn’t spill it.</p>
+            <br>
+            <p>Rule Number Two is to pay attention to what might happen. The more ice there is, the further down the road you have to look. Test how long it takes to stop by gently braking. Remember that you may be <strong>(40)______</strong>.</p>
+            <br>
+            <p>In general, allow double your normal stopping distance when the road is wet. Three times this distance on snow, and even more on ice. Try to stay in control of your car all times and you will avoid trouble.</p>
+          </div>
+        `
+      }
+    };
+
+    // Web Audio API Engine
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new AudioContext();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function playCorrectSound() {
+      initAudio();
+      const notes = [523.25, 659.25, 783.99, 1046.50];
+      notes.forEach((freq, index) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + index * 0.08);
+
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime + index * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + index * 0.08 + 0.35);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(audioCtx.currentTime + index * 0.08);
+        osc.stop(audioCtx.currentTime + index * 0.08 + 0.36);
+      });
+    }
+
+    function playWrongSound() {
+      initAudio();
+      const notes = [329.63, 293.66, 220.00];
+      notes.forEach((freq, index) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + index * 0.12);
+
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime + index * 0.12);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + index * 0.12 + 0.28);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(audioCtx.currentTime + index * 0.12);
+        osc.stop(audioCtx.currentTime + index * 0.12 + 0.3);
+      });
+    }
+
+    // Confetti Engine
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    let confettiParticles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function triggerConfetti() {
+      confettiParticles = [];
+      const colors = ['#FF4757', '#FDCB6E', '#00C9A7', '#8854C0', '#0984E3', '#00D26A'];
+      for (let i = 0; i < 70; i++) {
+        confettiParticles.push({
+          x: window.innerWidth / 2 + (Math.random() - 0.5) * 220,
+          y: window.innerHeight / 2 - 100,
+          w: Math.random() * 10 + 6,
+          h: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 14,
+          vy: Math.random() * -12 - 4,
+          gravity: 0.45,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 12,
+          opacity: 1
+        });
+      }
+      animateConfetti();
+    }
+
+    let confettiAnimId = null;
+    function animateConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = false;
+
+      confettiParticles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.rotation += p.rotationSpeed;
+        p.opacity -= 0.012;
+
+        if (p.opacity > 0) {
+          alive = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.opacity;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        }
+      });
+
+      if (alive) {
+        confettiAnimId = requestAnimationFrame(animateConfetti);
+      } else {
+        cancelAnimationFrame(confettiAnimId);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    // Fisher-Yates Shuffle
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // User State
+    let userAnswers = {};
+
+    function renderQuiz() {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+
+      const totalQ = questionsData.length;
+      document.getElementById('totalQuestionsCount1').innerText = totalQ;
+      document.getElementById('totalQuestionsCount2').innerText = totalQ;
+
+      questionsData.forEach((q) => {
+        if (passagesMapping[q.id]) {
+          const sectionData = passagesMapping[q.id];
+          const secHeader = document.createElement('div');
+          secHeader.className = 'section-badge-card';
+          secHeader.innerHTML = `<span>📂</span> <div><div>${sectionData.title}</div><div style="font-size: 13px; font-weight: 600; opacity: 0.9;">${sectionData.desc}</div></div>`;
+          container.appendChild(secHeader);
+
+          if (sectionData.passageHtml) {
+            const pDiv = document.createElement('div');
+            pDiv.innerHTML = sectionData.passageHtml;
+            container.appendChild(pDiv);
+          }
+        }
+
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `qCard_${q.id}`;
+
+        let html = `
+          <div class="q-header">
+            <span class="q-number-pill">CÂU ${q.id}</span>
+            <span class="q-type-pill">${q.section}</span>
+          </div>
+          <div class="q-text">${q.question}</div>
+        `;
+
+        const shuffledOptions = shuffleArray(q.options);
+        const letterTags = ['A', 'B', 'C', 'D'];
+
+        html += `<div class="options-grid" id="optGrid_${q.id}">`;
+        shuffledOptions.forEach((opt, oIdx) => {
+          const letter = letterTags[oIdx];
+          html += `
+            <div class="option-btn" id="btn_${q.id}_${letter}" 
+                 onclick="handleSelectAnswer(${q.id}, '${letter}', ${opt.isCorrect}, this)">
+              <div class="opt-letter">${letter}</div>
+              <div class="opt-text">${opt.text}</div>
+            </div>
+          `;
+        });
+        html += `</div>`;
+
+        // Explanation matching Screenshot 1 exactly
+        html += `
+          <div class="explanation-box" id="expBox_${q.id}">
+            <div class="exp-title">⚡ GIẢI THÍCH CHI TIẾT</div>
+            
+            <div class="translation-bar">
+              <span>💬</span>
+              <div><strong>Dịch:</strong> ${q.explanation.translation}</div>
+            </div>
+
+            <div class="step-section">
+              <div class="step-header">1. Phân tích 4 đáp án:</div>
+              <div class="exp-grid">
+                ${q.explanation.analysis.map(item => `
+                  <div class="exp-item-card">
+                    <span class="opt-name">${item.text}</span>
+                    <span class="badge-pill ${item.badgeClass}">${item.badge}</span>
+                    <span class="exp-item-desc">${item.desc}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="why-correct-box">
+              <strong>2. ✅ TẠI SAO ĐÚNG?</strong> 
+              <span class="highlight-rule">${q.explanation.whyCorrect.rule}:</span> 
+              ${q.explanation.whyCorrect.detail}
+            </div>
+
+            <div class="why-wrong-box">
+              <div style="margin-bottom: 6px;"><strong>3. ❌ TẠI SAO SAI?</strong></div>
+              ${q.explanation.whyWrong.map(item => `
+                <div style="margin-top: 4px;">
+                  • <span class="highlight-wrong">${item.opt}</span>: ${item.reason}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+
+        card.innerHTML = html;
+        container.appendChild(card);
+      });
+
+      updateProgress();
+    }
+
+    function handleSelectAnswer(questionId, chosenLetter, isCorrect, btnElement) {
+      if (userAnswers[questionId]) return;
+
+      userAnswers[questionId] = {
+        chosen: chosenLetter,
+        isCorrect: isCorrect
+      };
+
+      if (isCorrect) {
+        btnElement.classList.add('correct');
+        playCorrectSound();
+        triggerConfetti();
+      } else {
+        btnElement.classList.add('wrong');
+        playWrongSound();
+      }
+
+      const parentGrid = document.getElementById(`optGrid_${questionId}`);
+      const buttons = parentGrid.querySelectorAll('.option-btn');
+      buttons.forEach(b => b.classList.add('disabled'));
+
+      const expBox = document.getElementById(`expBox_${questionId}`);
+      if (expBox) {
+        expBox.style.display = 'block';
+      }
+
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const total = questionsData.length;
+      const answeredKeys = Object.keys(userAnswers);
+      const answeredCount = answeredKeys.length;
+      const correctCount = answeredKeys.filter(k => userAnswers[k].isCorrect).length;
+
+      document.getElementById('starCounter').innerText = correctCount;
+      document.getElementById('correctCounter').innerText = correctCount;
+
+      const percent = total > 0 ? (answeredCount / total) * 100 : 0;
+      document.getElementById('progressBarFill').style.width = `${percent}%`;
+    }
+
+    function submitTest() {
+      const total = questionsData.length;
+      const answeredKeys = Object.keys(userAnswers);
+      const correctCount = answeredKeys.filter(k => userAnswers[k].isCorrect).length;
+      const percentage = Math.round((correctCount / total) * 100);
+
+      document.getElementById('modalScoreText').innerText = `${correctCount} / ${total} CÂU ĐÚNG`;
+      document.getElementById('modalPercent').innerText = `(${percentage}%)`;
+
+      let teacherNote = "";
+      let emoji = "🎉";
+
+      if (percentage < 50) {
+        emoji = "💪";
+        teacherNote = "“Điểm lần này chưa cao lắm, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!”<br><br>— <strong>Ms Lê Hằng English</strong>";
+      } else if (percentage >= 50 && percentage <= 80) {
+        emoji = "🌟";
+        teacherNote = "“Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!”<br><br>— <strong>Ms Lê Hằng English</strong>";
+      } else {
+        emoji = "🏆";
+        teacherNote = "“Làm tốt lắm, con cố gắng ring điểm 10 ở lần sau nha!”<br><br>— <strong>Ms Lê Hằng English</strong>";
+      }
+
+      document.getElementById('modalEmoji').innerText = emoji;
+      document.getElementById('modalTeacherNote').innerHTML = teacherNote;
+      document.getElementById('resultModal').style.display = 'flex';
+    }
+
+    function restartTest() {
+      userAnswers = {};
+      document.getElementById('resultModal').style.display = 'none';
+      renderQuiz();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    renderQuiz();
+  </script>
+</body>
+</html>
